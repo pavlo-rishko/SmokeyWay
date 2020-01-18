@@ -25,5 +25,7 @@ namespace DAL.Entities
         public string PasswordHash { get; set; }
 
         public int RoleId { get; set; }
+
+        public virtual Gender Gender { get; set; }
     }
 }
