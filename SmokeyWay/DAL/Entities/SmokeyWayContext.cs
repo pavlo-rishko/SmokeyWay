@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Entities
 {
@@ -13,5 +14,12 @@ namespace DAL.Entities
         public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet<Gender> Genders { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new GenderConfiguration());
+        }
     }
 }
