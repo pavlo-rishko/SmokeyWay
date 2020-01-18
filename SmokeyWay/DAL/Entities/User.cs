@@ -8,7 +8,7 @@ namespace DAL.Entities
 
         public string Name { get; set; }
 
-        public string Number { get; set; }
+        public string PhoneNumber { get; set; }
 
         public bool PhoneNumberConfirmed { get; set; }
 
@@ -25,6 +25,8 @@ namespace DAL.Entities
         public string PasswordHash { get; set; }
 
         public int RoleId { get; set; }
+
+        public virtual UserRole Role {get;set;}
 
         public virtual Gender Gender { get; set; }
     }
