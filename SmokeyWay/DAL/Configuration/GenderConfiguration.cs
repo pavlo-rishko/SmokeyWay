@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Configuration
 {
-    class GenderConfiguration : IEntityTypeConfiguration<Gender>
+    public class GenderConfiguration : IEntityTypeConfiguration<Gender>
     {
         public void Configure(EntityTypeBuilder<Gender> builder)
         {

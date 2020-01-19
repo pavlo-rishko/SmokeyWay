@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Configuration
 {
-    class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
+    public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Configuration
 {
-    class UserConfiguration : IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
@@ -33,8 +33,8 @@ namespace DAL.Configuration
 
             builder.Property(e => e.PasswordHash);
 
-            builder.HasOne(e => e.Gender).WithMany(t => t.Users).
-                HasForeignKey(w => w.GenderId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(e => e.Gender).WithMany(t => t.Users)
+                .HasForeignKey(w => w.GenderId).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(e => e.Role).WithMany(t => t.Users)
                 .HasForeignKey(w => w.RoleId).OnDelete(DeleteBehavior.Restrict);

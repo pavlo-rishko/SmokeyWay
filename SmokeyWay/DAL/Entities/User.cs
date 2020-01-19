@@ -8,7 +8,7 @@ namespace DAL.Entities
     {
         public User()
         {
-            OnlineTableReservations = new List<OnlineTableReservation>();
+            this.OnlineTableReservations = new List<OnlineTableReservation>();
         }
 
         public int Id { get; set; }
@@ -33,7 +33,7 @@ namespace DAL.Entities
 
         public int RoleId { get; set; }
 
-        public virtual UserRole Role {get;set;}
+        public virtual UserRole Role { get; set; }
 
         public virtual Gender Gender { get; set; }
 

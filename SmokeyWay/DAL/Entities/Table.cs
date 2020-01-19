@@ -8,8 +8,8 @@ namespace DAL.Entities
     {
         public Table()
         {
-            OnlineTableReservations = new List<OnlineTableReservation>();
-            Orders = new List<Order>();
+            this.OnlineTableReservations = new List<OnlineTableReservation>();
+            this.Orders = new List<Order>();
         }
 
         public int Id { get; set; }
