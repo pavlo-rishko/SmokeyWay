@@ -1,0 +1,19 @@
+﻿using System;
+
+namespace DAL.Entities
+{
+    public class OnlineTableReservation
+    {
+        public int Id { get; set; }
+
+        public int TableId { get; set; }
+
+        public DateTime ReservationDateTime { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
+        public Table Table { get; set; }
+    }
+}

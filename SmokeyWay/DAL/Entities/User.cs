@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DAL.Entities
 {
     public class User
     {
+        public User()
+        {
+            OnlineTableReservations = new List<OnlineTableReservation>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -29,5 +36,7 @@ namespace DAL.Entities
         public virtual UserRole Role {get;set;}
 
         public virtual Gender Gender { get; set; }
+
+        public ICollection<OnlineTableReservation> OnlineTableReservations { get; set; }
     }
 }
