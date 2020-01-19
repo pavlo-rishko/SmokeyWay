@@ -15,7 +15,7 @@ namespace DAL.Configuration
 
             builder.HasKey(e => e.Id);
 
-            builder.Property(e => e.Id).ValueGeneratedOnAdd();
+            builder.Property(e => e.Id).ValueGeneratedOnAdd().IsRequired();
 
             builder.Property(e => e.Name).HasMaxLength(50);
 
@@ -38,7 +38,6 @@ namespace DAL.Configuration
 
             builder.HasOne(e => e.Role).WithMany(t => t.Users)
                 .HasForeignKey(w => w.RoleId).OnDelete(DeleteBehavior.Restrict);
-
         }
     }
 }
