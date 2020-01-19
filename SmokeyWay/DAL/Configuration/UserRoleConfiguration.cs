@@ -1,0 +1,23 @@
+﻿using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DAL.Configuration
+{
+    class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
+    {
+        public void Configure(EntityTypeBuilder<UserRole> builder)
+        {
+            builder.ToTable("UserRole");
+
+            builder.HasKey(e => e.Id);
+
+            builder.Property(e => e.Id).ValueGeneratedOnAdd();
+
+            builder.Property(e => e.Name).HasMaxLength(50);
+        }
+    }
+}
