@@ -6,12 +6,6 @@ namespace DAL.Entities
 {
     public class Table
     {
-        public Table()
-        {
-            this.OnlineTableReservations = new List<OnlineTableReservation>();
-            this.Orders = new List<Order>();
-        }
-
         public int Id { get; set; }
 
         public string Identifier { get; set; }
@@ -22,8 +16,8 @@ namespace DAL.Entities
 
         public int ConsoleId { get; set; }
 
-        public ICollection<OnlineTableReservation> OnlineTableReservations { get; set; }
+        public List<OnlineTableReservation> OnlineTableReservations { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

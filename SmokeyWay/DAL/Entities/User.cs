@@ -6,11 +6,6 @@ namespace DAL.Entities
 {
     public class User
     {
-        public User()
-        {
-            this.OnlineTableReservations = new List<OnlineTableReservation>();
-        }
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -27,6 +22,8 @@ namespace DAL.Entities
 
         public int GenderId { get; set; }
 
+        public virtual Gender Gender { get; set; }
+
         public string CommunicationLanguage { get; set; }
 
         public string PasswordHash { get; set; }
@@ -35,8 +32,6 @@ namespace DAL.Entities
 
         public virtual UserRole Role { get; set; }
 
-        public virtual Gender Gender { get; set; }
-
-        public ICollection<OnlineTableReservation> OnlineTableReservations { get; set; }
+        public List<OnlineTableReservation> OnlineTableReservations { get; set; }
     }
 }

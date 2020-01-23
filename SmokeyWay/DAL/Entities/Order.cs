@@ -12,8 +12,10 @@ namespace DAL.Entities
 
         public int TableId { get; set; }
 
+        public Table Table { get; set; }
+
         public int EmployeeId { get; set; }
 
-        public Table Table { get; set; }
+        public List<OrderDish> OrdersDishes { get; set; }
     }
 }
