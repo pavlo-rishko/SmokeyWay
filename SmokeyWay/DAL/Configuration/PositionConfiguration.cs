@@ -21,7 +21,8 @@ namespace DAL.Configuration
 
             builder.Property(x => x.Description).HasMaxLength(8000);
 
-            builder.HasMany(x => x.Employees).WithOne(x => x.Position);
+            builder.HasMany(x => x.Employees).WithOne(x => x.Position)
+                .HasForeignKey(x => x.PositionId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
