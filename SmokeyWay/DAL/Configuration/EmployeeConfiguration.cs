@@ -12,7 +12,7 @@ namespace DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.ToTable("EmployeeConfiguration");
+            builder.ToTable("Employee");
 
             builder.HasKey(x => x.Id);
 
