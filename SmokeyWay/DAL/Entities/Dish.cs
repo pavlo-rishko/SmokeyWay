@@ -20,6 +20,6 @@ namespace DAL.Entities
 
         public DishType DishType { get; set; }
 
-        public List<OrderDish> OrdersDishes { get; set; }
+        public IList<OrderDish> OrdersDishes { get; set; }
     }
 }

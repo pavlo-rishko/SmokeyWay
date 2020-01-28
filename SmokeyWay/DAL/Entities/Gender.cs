@@ -10,6 +10,8 @@ namespace DAL.Entities
 
         public string Descriprion { get; set; }
 
-        public List<User> Users { get; set; }
+        public IList<Employee> Employees { get; set; }
+
+        public IList<User> Users { get; set; }
     }
 }

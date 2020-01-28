@@ -16,6 +16,8 @@ namespace DAL.Entities
 
         public int EmployeeId { get; set; }
 
-        public List<OrderDish> OrdersDishes { get; set; }
+        public Employee Employee { get; set; }
+
+        public IList<OrderDish> OrdersDishes { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace DAL.Configuration
@@ -24,6 +25,15 @@ namespace DAL.Configuration
             builder.Property(x => x.SeatingCapacity).IsRequired();
 
             builder.Property(x => x.ConsoleId);
+
+            builder.HasMany(x => x.Orders).WithOne(x => x.Table)
+                .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.OnlineTableReservations).WithOne(x => x.Table)
+                .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.Department).WithMany(x => x.Tables)
+                .HasForeignKey(x => x.DepartmentId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

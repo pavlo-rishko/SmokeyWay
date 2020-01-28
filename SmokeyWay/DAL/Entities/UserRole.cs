@@ -8,6 +8,6 @@ namespace DAL.Entities
 
         public int Name { get; set; }
 
-        public virtual List<User> Users { get; set; }
+        public virtual IList<User> Users { get; set; }
     }
 }

@@ -32,6 +32,6 @@ namespace DAL.Entities
 
         public virtual UserRole Role { get; set; }
 
-        public List<OnlineTableReservation> OnlineTableReservations { get; set; }
+        public IList<OnlineTableReservation> OnlineTableReservations { get; set; }
     }
 }

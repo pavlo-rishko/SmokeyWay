@@ -25,6 +25,9 @@ namespace DAL.Configuration
 
             builder.HasOne(x => x.Table).WithMany(x => x.Orders)
                 .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.Employee).WithMany(x => x.Orders)
+                .HasForeignKey(x => x.EmployeeId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

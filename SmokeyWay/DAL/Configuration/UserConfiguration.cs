@@ -38,6 +38,9 @@ namespace DAL.Configuration
 
             builder.HasOne(e => e.Role).WithMany(t => t.Users)
                 .HasForeignKey(w => w.RoleId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.OnlineTableReservations).WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

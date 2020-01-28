@@ -10,18 +10,16 @@ namespace DAL.Configuration
         {
             builder.ToTable("OrderDish");
 
-            builder.HasKey(x => x.Id);
-
-            builder.Property(x => x.Id).IsRequired().ValueGeneratedOnAdd();
-
-            builder.Property(x => x.DishId).IsRequired();
-
-            builder.Property(x => x.OrderId).IsRequired();
+            builder.HasKey(x => new {x.DishId, x.OrderId});
 
             builder.HasOne(x => x.Order)
                 .WithMany(x => x.OrdersDishes)
-                .HasForeignKey(x => x.DishId)
                 .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.Dish)
+                .WithMany(x => x.OrdersDishes)
+                .HasForeignKey(x => x.DishId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
