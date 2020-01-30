@@ -1,9 +1,6 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Configuration
 {
@@ -25,6 +22,9 @@ namespace DAL.Configuration
 
             builder.HasOne(x => x.Table).WithMany(x => x.Orders)
                 .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.Employee).WithMany(x => x.Orders)
+                .HasForeignKey(x => x.EmployeeId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

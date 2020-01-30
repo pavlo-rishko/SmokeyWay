@@ -1,9 +1,6 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Configuration
 {
@@ -20,6 +17,12 @@ namespace DAL.Configuration
             builder.Property(e => e.Name).HasMaxLength(100);
 
             builder.Property(e => e.Descriprion).HasMaxLength(1000);
+
+            builder.HasMany(x => x.Users).WithOne(x => x.Gender)
+                .HasForeignKey(x => x.GenderId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Employees).WithOne(x => x.Gender)
+                .HasForeignKey(x => x.GenderId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

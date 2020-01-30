@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace DAL.Entities
@@ -32,6 +31,6 @@ namespace DAL.Entities
 
         public virtual UserRole Role { get; set; }
 
-        public List<OnlineTableReservation> OnlineTableReservations { get; set; }
+        public IList<OnlineTableReservation> OnlineTableReservations { get; set; }
     }
 }

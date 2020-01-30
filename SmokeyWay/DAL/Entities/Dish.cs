@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DAL.Entities
 {
@@ -20,6 +18,6 @@ namespace DAL.Entities
 
         public DishType DishType { get; set; }
 
-        public List<OrderDish> OrdersDishes { get; set; }
+        public IList<OrderDish> OrdersDishes { get; set; }
     }
 }

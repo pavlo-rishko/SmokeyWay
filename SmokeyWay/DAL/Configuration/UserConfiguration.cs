@@ -1,9 +1,6 @@
 ﻿using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Configuration
 {
@@ -38,6 +35,9 @@ namespace DAL.Configuration
 
             builder.HasOne(e => e.Role).WithMany(t => t.Users)
                 .HasForeignKey(w => w.RoleId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.OnlineTableReservations).WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

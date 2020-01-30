@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DAL.Entities
 {
@@ -12,12 +10,14 @@ namespace DAL.Entities
 
         public int DepartmentId { get; set; }
 
+        public Department Department { get; set; }
+
         public int SeatingCapacity { get; set; }
 
         public int ConsoleId { get; set; }
 
-        public List<OnlineTableReservation> OnlineTableReservations { get; set; }
+        public IList<OnlineTableReservation> OnlineTableReservations { get; set; }
 
-        public List<Order> Orders { get; set; }
+        public IList<Order> Orders { get; set; }
     }
 }
