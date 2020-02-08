@@ -14,9 +14,13 @@ namespace DAL.Entities
 
         public int SeatingCapacity { get; set; }
 
-        public int ConsoleId { get; set; }
+        public int GameConsoleId { get; set; }
+
+        public GameConsole GameConsole { get; set; }
 
         public IList<OnlineTableReservation> OnlineTableReservations { get; set; }
+
+        public IList<OfflineTableReservation> OfflineTableResrvations { get; set; }
 
         public IList<Order> Orders { get; set; }
     }

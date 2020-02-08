@@ -51,6 +51,12 @@ namespace DAL.Entities
             modelBuilder.ApplyConfiguration(new OrderDishConfiguration());
             modelBuilder.ApplyConfiguration(new PositionConfiguration());
             modelBuilder.ApplyConfiguration(new TableConfiguration());
+
+            modelBuilder.ApplyConfiguration(new GameConfiguration());
+            modelBuilder.ApplyConfiguration(new GameConsoleConfiguration());
+            modelBuilder.ApplyConfiguration(new GameConsoleGameConfiguration());
+
+            modelBuilder.ApplyConfiguration(new OfflineTableReservationConfiguration());
         }
     }
 }

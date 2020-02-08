@@ -20,7 +20,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.SeatingCapacity).IsRequired();
 
-            builder.Property(x => x.ConsoleId);
+            builder.Property(x => x.GameConsoleId);
 
             builder.HasMany(x => x.Orders).WithOne(x => x.Table)
                 .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
