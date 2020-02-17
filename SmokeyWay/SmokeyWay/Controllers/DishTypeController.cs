@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
-    public class DishTypeController : ApiController
+    public class DishTypeController 
     {
     }
 }

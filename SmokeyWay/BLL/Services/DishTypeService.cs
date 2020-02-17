@@ -1,8 +1,9 @@
 ﻿using BLL.Interfaces;
 using DAL.Entities;
+using DAL.UnitOfWork;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -17,22 +18,34 @@ namespace BLL.Services
 
         public IEnumerable<DishType> Get()
         {
-           
+            return _uow.Repository<DishType>().GetAll();
         }
 
         public DishType Get(int id)
         {
-            throw new NotImplementedException();
+            return _uow.Repository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
         }
 
-        public Task Remove(int id)
+        public async Task Remove(int id)
         {
-            throw new NotImplementedException();
+           var dish = _uow.Repository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+            if (dish == null)
+            {
+                throw new NullReferenceException($"Error while deleting dishtype. DishType with id {nameof(id)}={id} not found");
+            }
+            _uow.Repository<DishType>().Remove(dish);
+            await _uow.SaveChangesAsync();
         }
 
-        public Task Update(DishType dish, int dishId)
+        public async Task Update( int id)
         {
-            throw new NotImplementedException();
+            var dish = _uow.Repository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+            if (dish == null)
+            {
+                throw new NullReferenceException($"Error while updating dishtype. DishType with id {nameof(id)}={id} not found");
+            }
+            _uow.Repository<DishType>().Update(dish);
+            await _uow.SaveChangesAsync();
         }
     }
 }

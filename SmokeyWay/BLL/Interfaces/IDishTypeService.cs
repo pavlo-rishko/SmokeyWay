@@ -10,7 +10,7 @@ namespace BLL.Interfaces
 
         Task Remove(int id);
 
-        Task Update(DishType dish, int dishId);
+        Task Update(int id);
 
         IEnumerable<DishType> Get();
 
