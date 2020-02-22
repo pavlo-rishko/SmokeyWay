@@ -10,10 +10,10 @@ namespace BLL.Interfaces
 
         Task Remove(int id);
 
-        Task Update(int id);
+        Task Update(DishType dish,int id);
 
         IQueryable<DishType> Get();
 
-        DishType Get(int id);
+        DishType GetById(int id);
     }
 }
