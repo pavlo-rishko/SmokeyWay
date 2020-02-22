@@ -15,21 +15,21 @@ namespace BLL.Services
         {
             _uow = uow;
         }
-        public async Task Add(DishType dish)
+        public async Task Add(string name)
         {
             try
             {
                 var dishtype = new DishType
                 {
-                    Id = dish.Id,
-                    Name = dish.Name
+
+                    Name = name
                 };
-                _uow.GetRepository<DishType>().Add(dish);
+                _uow.GetRepository<DishType>().Add(dishtype);
                 await _uow.SaveChangesAsync();
             }
             catch(Exception ex)
             {
-                ex.Data["dishType"] = dish;
+                ex.Data["dishType"] = name;
                 throw;
             }
         }
