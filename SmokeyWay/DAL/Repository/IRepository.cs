@@ -9,7 +9,7 @@ namespace DAL.Repository
     public interface IRepository<TEntity> where TEntity : class
     {
         Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null);
-        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null);
+        Task<IEnumerable<TEntity>> GetAllAsync();
         IQueryable<TEntity> GetAll();
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
