@@ -1,3 +1,4 @@
+using BLL.Interfaces;
 using DAL.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BLL.Services;
+using DAL.UnitOfWork;
 
 namespace SmokeyWay
 {
@@ -32,8 +35,13 @@ namespace SmokeyWay
             });
 
             services.AddMvc();
+
+
            services.AddDbContext<SmokeyWayDbContext>
                 (item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
+               new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
+            services.AddTransient<IDishTypeService, DishTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

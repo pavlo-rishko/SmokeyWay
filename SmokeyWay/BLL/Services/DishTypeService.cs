@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    class DishTypeService : IDishTypeService
+    public class DishTypeService : IDishTypeService
     {
         private readonly IUnitOfWork _uow;
+
+        public DishTypeService(IUnitOfWork uow)
+        {
+            _uow = uow;
+        }
         public async Task Add(DishType dish)
         {
             try
