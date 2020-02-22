@@ -6,7 +6,7 @@ namespace DAL.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<TEntity> Repository<TEntity>() where TEntity : class;
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
         Task<int> SaveChangesAsync();
     }
 }

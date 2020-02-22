@@ -1,5 +1,5 @@
 ﻿using DAL.Entities;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL.Interfaces
@@ -12,7 +12,7 @@ namespace BLL.Interfaces
 
         Task Update(int id);
 
-        IEnumerable<DishType> Get();
+        IQueryable<DishType> Get();
 
         DishType Get(int id);
     }

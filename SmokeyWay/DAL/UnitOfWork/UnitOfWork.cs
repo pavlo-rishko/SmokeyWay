@@ -17,7 +17,7 @@ namespace DAL.UnitOfWork
             Context.Dispose();
         }
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
             return new Repository<TEntity>(Context.Set<TEntity>());
         }

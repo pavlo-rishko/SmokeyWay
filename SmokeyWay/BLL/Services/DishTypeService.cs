@@ -2,7 +2,6 @@
 using DAL.Entities;
 using DAL.UnitOfWork;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,40 +10,54 @@ namespace BLL.Services
     class DishTypeService : IDishTypeService
     {
         private readonly IUnitOfWork _uow;
-        public Task Add(DishType dish)
+        public async Task Add(DishType dish)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var dishtype = new DishType
+                {
+                    Id = dish.Id,
+                    Name = dish.Name
+                };
+                _uow.GetRepository<DishType>().Add(dish);
+                await _uow.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                ex.Data["dishType"] = dish;
+                throw;
+            }
         }
 
-        public IEnumerable<DishType> Get()
+        public IQueryable<DishType> Get()
         {
-            return _uow.Repository<DishType>().GetAll();
+            return _uow.GetRepository<DishType>().GetAll();
         }
 
         public DishType Get(int id)
         {
-            return _uow.Repository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+            return _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
         }
 
         public async Task Remove(int id)
         {
-           var dish = _uow.Repository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+           var dish = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
             if (dish == null)
             {
                 throw new NullReferenceException($"Error while deleting dishtype. DishType with id {nameof(id)}={id} not found");
             }
-            _uow.Repository<DishType>().Remove(dish);
+            _uow.GetRepository<DishType>().Remove(dish);
             await _uow.SaveChangesAsync();
         }
 
         public async Task Update( int id)
         {
-            var dish = _uow.Repository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+            var dish = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
             if (dish == null)
             {
                 throw new NullReferenceException($"Error while updating dishtype. DishType with id {nameof(id)}={id} not found");
             }
-            _uow.Repository<DishType>().Update(dish);
+            _uow.GetRepository<DishType>().Update(dish);
             await _uow.SaveChangesAsync();
         }
     }

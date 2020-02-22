@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DAL.UnitOfWork;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SmokeyWay.Controllers
 {
-    public class DishTypeController 
+    [Route("api/dishTypes")]
+    [ApiController]
+    public class DishTypeController : ControllerBase
     {
+        private readonly IUnitOfWork _uow;
+        public DishTypeController()
+        {
+
+        }
     }
 }
