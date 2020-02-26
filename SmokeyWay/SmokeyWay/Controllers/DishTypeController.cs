@@ -33,7 +33,7 @@ namespace SmokeyWay.Controllers
             return Ok(dishtype);
         }
         [HttpPost("create")]
-        public async Task<IActionResult> CreateDishType([FromBody]DishType dish)
+        public async Task<IActionResult> CreateDishType([FromBody]string dish)
         {
             if (dish == null)
             {

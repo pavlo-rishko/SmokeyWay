@@ -9,7 +9,7 @@ namespace DAL.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-         DbSet<TEntity> _dbSet { get; }
+        private readonly DbSet<TEntity> _dbSet;
 
         public Repository(DbSet<TEntity> dbSet)
         {

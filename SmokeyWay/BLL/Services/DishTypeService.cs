@@ -21,7 +21,6 @@ namespace BLL.Services
             {
                 var dishtype = new DishType
                 {
-
                     Name = name
                 };
                 _uow.GetRepository<DishType>().Add(dishtype);
@@ -41,29 +40,53 @@ namespace BLL.Services
 
         public DishType GetById(int id)
         {
-            return _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+            try
+            {
+                var project = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+                return project;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Error when getting dishtype by {nameof(id)} = {id} ", ex);
+            }
         }
 
         public async Task Remove(int id)
         {
-           var dish = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
-            if (dish == null)
+            try
             {
-                throw new NullReferenceException($"Error while deleting dishtype. DishType with id {nameof(id)}={id} not found");
+                var dish = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+                if (dish == null)
+                {
+                    throw new NullReferenceException($"Error while deleting dishtype. DishType with id {nameof(id)}={id} not found");
+                }
+                _uow.GetRepository<DishType>().Remove(dish);
+                await _uow.SaveChangesAsync();
             }
-            _uow.GetRepository<DishType>().Remove(dish);
-            await _uow.SaveChangesAsync();
+            catch(Exception ex)
+            {
+                ex.Data["id"] = id;
+                throw;
+            }
         }
 
         public async Task Update(DishType type, int id)
         {
-           type = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
-            if (type == null)
+            try
             {
-                throw new NullReferenceException($"Error while updating dishtype. DishType with id {nameof(id)}={id} not found");
+                type = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+                if (type == null)
+                {
+                    throw new NullReferenceException($"Error while updating dishtype. DishType with id {nameof(id)}={id} not found");
+                }
+                _uow.GetRepository<DishType>().Update(type);
+                await _uow.SaveChangesAsync();
             }
-            _uow.GetRepository<DishType>().Update(type);
-            await _uow.SaveChangesAsync();
+            catch(Exception ex)
+            {
+                ex.Data["id"] = id;
+                throw;
+            }
         }
     }
 }
