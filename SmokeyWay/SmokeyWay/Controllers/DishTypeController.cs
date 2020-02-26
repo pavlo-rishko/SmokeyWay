@@ -33,7 +33,7 @@ namespace SmokeyWay.Controllers
             return Ok(dishtype);
         }
         [HttpPost("create")]
-        public async Task<IActionResult> CreateDishType([FromBody]string dish)
+        public async Task<IActionResult> CreateDishType([FromBody]DishType dish)
         {
             if (dish == null)
             {
@@ -49,7 +49,7 @@ namespace SmokeyWay.Controllers
             {
                 throw new ArgumentException($"{nameof(id)} cannot be null");
             }
-            await _service.Update(type, id);
+            await _service.UpdateById(id);
             return Ok(type);
         }
 
@@ -60,7 +60,7 @@ namespace SmokeyWay.Controllers
             {
                 throw new ArgumentException($"{nameof(id)} cannot be null");
             }
-            await _service.Remove(id);
+            await _service.RemoveById(id);
             return Ok();
         }
     }

@@ -16,16 +16,16 @@ namespace BLL.Services
             _uow = uow;
         }
         
-        public async Task Add(string name)
+        public async Task Add(DishType type)
         {
             try
             {                
-                _uow.GetRepository<DishType>().Add(new DishType {Name = name});
+                _uow.GetRepository<DishType>().Add(new DishType {Name = type.Name});
                 await _uow.SaveChangesAsync();
             }
             catch(Exception ex)
             {
-                ex.Data["dishType"] = name;
+                ex.Data["dishType"] = type;
                 throw;
             }
         }

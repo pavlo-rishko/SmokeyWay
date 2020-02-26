@@ -6,7 +6,7 @@ namespace BLL.Interfaces
 {
     public interface IDishTypeService
     {
-        Task Add(string name);
+        Task Add(DishType type);
 
         Task RemoveById(int id);
 
