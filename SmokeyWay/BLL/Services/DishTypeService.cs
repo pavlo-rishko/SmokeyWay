@@ -48,14 +48,14 @@ namespace BLL.Services
             }
         }
 
-        public async Task Remove(int id)
+        public async Task RemoveById(int id)
         {
             try
             {
                 var dish = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
                 if (dish == null)
                 {
-                    throw new NullReferenceException($"Error while deleting dishtype. DishType with id {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while deleting dishtype. DishType with {nameof(id)}={id} not found");
                 }
                 _uow.GetRepository<DishType>().Remove(dish);
                 await _uow.SaveChangesAsync();
@@ -67,14 +67,14 @@ namespace BLL.Services
             }
         }
 
-        public async Task Update(DishType type, int id)
+        public async Task UpdateById(int id)
         {
             try
             {
-                type = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
+                var type = _uow.GetRepository<DishType>().GetAll().SingleOrDefault(e => e.Id == id);
                 if (type == null)
                 {
-                    throw new NullReferenceException($"Error while updating dishtype. DishType with id {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while updating dishtype. DishType with {nameof(id)}={id} not found");
                 }
                 _uow.GetRepository<DishType>().Update(type);
                 await _uow.SaveChangesAsync();

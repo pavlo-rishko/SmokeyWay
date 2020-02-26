@@ -18,9 +18,9 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpGet]
-        public IQueryable Get()
+        public IQueryable GetAll()
         {
-            return _service.Get();
+            return _service.GetAll();
         }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

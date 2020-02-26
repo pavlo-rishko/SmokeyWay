@@ -9,6 +9,7 @@ namespace DAL.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+
         private readonly DbSet<TEntity> _dbSet;
 
         public Repository(DbSet<TEntity> dbSet)
@@ -29,7 +30,7 @@ namespace DAL.Repository
 
         public IQueryable<TEntity> GetAll()
         {
-            return _dbSet;
+            return _dbSet.AsQueryable();
         }
 
         public void Remove(TEntity entity)

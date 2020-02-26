@@ -8,9 +8,9 @@ namespace BLL.Interfaces
     {
         Task Add(string name);
 
-        Task Remove(int id);
+        Task RemoveById(int id);
 
-        Task Update(DishType dish,int id);
+        Task UpdateById(int id);
 
         IQueryable<DishType> GetAll();
 
