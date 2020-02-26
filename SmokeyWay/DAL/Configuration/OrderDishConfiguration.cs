@@ -10,7 +10,7 @@ namespace DAL.Configuration
         {
             builder.ToTable("OrderDish");
 
-            builder.HasKey(x => new {x.DishId, x.OrderId});
+            builder.HasKey(x => new { x.DishId, x.OrderId });
 
             builder.HasOne(x => x.Order)
                 .WithMany(x => x.OrdersDishes)

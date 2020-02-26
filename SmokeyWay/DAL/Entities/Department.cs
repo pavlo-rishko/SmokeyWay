@@ -18,6 +18,6 @@ namespace DAL.Entities
 
         public IList<Employee> Employees { get; set; }
 
-        public  IList<Table> Tables { get; set; }
+        public IList<Table> Tables { get; set; }
     }
 }

@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UnitOfWork
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(DbContext context)
         {
             Context = context;
         }
-        private  DbContext Context { get; }
+
+        private DbContext Context { get; }
+
         public void Dispose()
         {
             Context.Dispose();
