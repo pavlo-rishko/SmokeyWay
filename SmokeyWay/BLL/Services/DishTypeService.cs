@@ -15,6 +15,7 @@ namespace BLL.Services
         {
             _uow = uow;
         }
+        
         public async Task Add(string name)
         {
             try

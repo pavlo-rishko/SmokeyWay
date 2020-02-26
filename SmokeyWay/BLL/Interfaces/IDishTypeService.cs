@@ -12,7 +12,7 @@ namespace BLL.Interfaces
 
         Task Update(DishType dish,int id);
 
-        IQueryable<DishType> Get();
+        IQueryable<DishType> GetAll();
 
         DishType GetById(int id);
     }
