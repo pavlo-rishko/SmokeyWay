@@ -18,12 +18,8 @@ namespace BLL.Services
         public async Task Add(string name)
         {
             try
-            {
-                var dishtype = new DishType
-                {
-                    Name = name
-                };
-                _uow.GetRepository<DishType>().Add(dishtype);
+            {                
+                _uow.GetRepository<DishType>().Add(new DishType {Name = name});
                 await _uow.SaveChangesAsync();
             }
             catch(Exception ex)
