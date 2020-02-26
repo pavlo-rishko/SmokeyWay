@@ -2,10 +2,8 @@
 
 namespace DAL.Entities
 {
-    public class DishType
+    public class DishType : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public IList<Dish> Dishes { get; set; }

@@ -2,10 +2,8 @@
 
 namespace DAL.Entities
 {
-    public class OfflineTableReservation
+    public class OfflineTableReservation : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public int TableId { get; set; }
 
         public Table Table { get; set; }
@@ -13,8 +11,6 @@ namespace DAL.Entities
         public string UserName { get; set; }
 
         public string UserPhoneNumber { get; set; }
-
-        public DateTime ReservationDateTime { get; set; }
 
         public int EmployeeId { get; set; }
 

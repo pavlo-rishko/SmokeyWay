@@ -2,10 +2,8 @@
 
 namespace DAL.Entities
 {
-    public class Department
+    public class Department : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Country { get; set; }
