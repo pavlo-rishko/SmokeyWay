@@ -13,7 +13,7 @@ namespace DAL.Repository
 
         public Repository(DbSet<TEntity> dbSet)
         {
-            _dbSet = dbSet;
+            _dbSet = dbSet;                                       
         }
 
         public async Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null)
@@ -22,9 +22,9 @@ namespace DAL.Repository
             return entity;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null)
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await GetAll().Where(predicate).ToListAsync();
+            return await GetAll().ToListAsync();
         }
 
         public IQueryable<TEntity> GetAll()
