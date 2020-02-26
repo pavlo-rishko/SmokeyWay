@@ -29,7 +29,7 @@ namespace BLL.Services
             }
         }
 
-        public IQueryable<DishType> Get()
+        public IQueryable<DishType> GetAll()
         {
             return _uow.GetRepository<DishType>().GetAll();
         }
