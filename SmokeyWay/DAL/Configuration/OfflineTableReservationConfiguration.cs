@@ -20,7 +20,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.UserPhoneNumber).HasMaxLength(45);
 
-            builder.Property(x => x.ReservationDateTime);
+            builder.Property(x => x.CreateDateTime);
 
             builder.Property(x => x.EmployeeId);
 

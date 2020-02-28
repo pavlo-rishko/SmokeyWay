@@ -16,7 +16,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.TableId);
 
-            builder.Property(x => x.ReservationDateTime);
+            builder.Property(x => x.CreateDateTime);
 
             builder.Property(x => x.UserId);
 

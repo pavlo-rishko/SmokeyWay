@@ -8,7 +8,7 @@ namespace DAL.Entities
     {
         public TKey Id { get; set; }
 
-        public DateTime CreateDateTime { get; set; }
+        public DateTime CreateDateTime { get; private set; } = DateTime.Now;
 
         public DateTime? UpdateDateTime { get; set; }
 

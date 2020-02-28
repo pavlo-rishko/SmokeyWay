@@ -12,6 +12,7 @@ namespace SmokeyWay.Controllers
     public class DishTypeController : ControllerBase
     {
         private readonly IDishTypeService _service;
+
         public DishTypeController(IDishTypeService service)
         {
             _service = service;
@@ -23,14 +24,15 @@ namespace SmokeyWay.Controllers
             return _service.GetAll();
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             if(id == default)
             {
                 throw new ArgumentException($"{nameof(id)} can not be 0");
             }
-           var dishtype =  await _service.GetById(id);
+            
+            var dishtype =  await _service.GetById(id);
             return Ok(dishtype);
         }
 
