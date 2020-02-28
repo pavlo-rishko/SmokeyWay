@@ -36,9 +36,16 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} can not be 0");
             }
 
-            var dishtype = await dishTypeRepository.Get(e => e.Id == id);
-
-            return Ok(dishtype);
+            try
+            {
+                var dishtype = await dishTypeRepository.Get(e => e.Id == id);
+                return Ok(dishtype);
+            }
+            catch (Exception ex)
+            {
+                ex.Data["id"] = id;
+                throw;
+            }           
         }
 
         [HttpPost("create")]
@@ -99,10 +106,18 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            DishType dishType = await dishTypeRepository.Get(e => e.Id == id);
-            dishTypeRepository.Remove(dishType);
-            await _unitOfWork.SaveChangesAsync();
-            return Ok();
+            try
+            {
+                DishType dishType = await dishTypeRepository.Get(e => e.Id == id);
+                dishTypeRepository.Remove(dishType);
+                await _unitOfWork.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                ex.Data["id"] = id;
+                throw;
+            }
         }
     }
 }
