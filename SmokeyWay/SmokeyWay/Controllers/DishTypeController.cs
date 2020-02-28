@@ -51,7 +51,7 @@ namespace SmokeyWay.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]DishType dish)
         {
-            if (dish == null)
+            if (dish.Name == null)
             {
                 throw new ArgumentException($"{nameof(dish)} can`t be null");
             }
