@@ -2,10 +2,8 @@
 
 namespace DAL.Entities
 {
-    public class Dish
+    public class Dish : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public decimal Price { get; set; }

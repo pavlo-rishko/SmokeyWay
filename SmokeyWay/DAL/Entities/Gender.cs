@@ -2,10 +2,8 @@
 
 namespace DAL.Entities
 {
-    public class Gender
+    public class Gender : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Descriprion { get; set; }

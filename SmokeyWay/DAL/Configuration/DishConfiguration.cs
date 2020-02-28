@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-
 namespace DAL.Configuration
 {
     public class DishConfiguration : IEntityTypeConfiguration<Dish>

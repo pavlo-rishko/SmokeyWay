@@ -2,10 +2,8 @@
 
 namespace DAL.Entities
 {
-    public class GameConsole
+    public class GameConsole : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public int GameConsoleTypeId { get; set; }
 
         public GameConsoleType GameConsoleType { get; set; }

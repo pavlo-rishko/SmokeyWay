@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace DAL.Entities
 {
-    public class Order
+    public class Order : BaseEntity<int>
     {
-        public int Id { get; set; }
-
         public DateTime DateTime { get; set; }
 
         public int TableId { get; set; }
