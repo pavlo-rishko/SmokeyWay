@@ -23,7 +23,7 @@ namespace DAL.Configuration
             builder.Property(x => x.IsAvalialable);
 
             builder.Property(x => x.TypeId);
-
+            
             builder.HasOne(x => x.DishType).WithMany(x => x.Dishes)
                 .HasForeignKey(x => x.TypeId).OnDelete(DeleteBehavior.Restrict);
         }
