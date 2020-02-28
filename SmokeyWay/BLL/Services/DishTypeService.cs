@@ -19,11 +19,11 @@ namespace BLL.Services
         public async Task Add(DishType type)
         {
             try
-            {                
-                _uow.GetRepository<DishType>().Add(new DishType {Name = type.Name});
+            {
+                _uow.GetRepository<DishType>().Add(new DishType { Name = type.Name });
                 await _uow.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["dishType"] = type;
                 throw;
@@ -35,13 +35,13 @@ namespace BLL.Services
             return _uow.GetRepository<DishType>().GetAll();
         }
 
-        public Task<DishType>  GetById(int id)
+        public Task<DishType> GetById(int id)
         {
             try
             {
                 return _uow.GetRepository<DishType>().Get(e => e.Id == id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception($"Error when getting dishtype by {nameof(id)} = {id} ", ex);
             }
@@ -61,7 +61,7 @@ namespace BLL.Services
                 _uow.GetRepository<DishType>().Remove(dish);
                 await _uow.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["id"] = id;
                 throw;
@@ -83,7 +83,7 @@ namespace BLL.Services
                 _uow.GetRepository<DishType>().Update(currentDishType);
                 await _uow.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["id"] = id;
                 throw;

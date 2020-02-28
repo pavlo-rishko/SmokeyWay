@@ -15,7 +15,7 @@ namespace DAL.UnitOfWork
             Context = context;
         }
 
-        private  DbContext Context { get; }
+        private DbContext Context { get; }
 
         public void Dispose()
         {

@@ -27,12 +27,12 @@ namespace SmokeyWay.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if(id == default)
+            if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} can not be 0");
             }
-            
-            var dishtype =  await _service.GetById(id);
+
+            var dishtype = await _service.GetById(id);
             return Ok(dishtype);
         }
 
@@ -43,17 +43,19 @@ namespace SmokeyWay.Controllers
             {
                 throw new ArgumentException($"{nameof(dish)} cannot be null");
             }
+
             await _service.Add(dish);
             return Ok(dish);
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id,[FromBody]DishType type)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]DishType type)
         {
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
+
             await _service.UpdateById(id, type);
             return Ok(type);
         }
@@ -65,6 +67,7 @@ namespace SmokeyWay.Controllers
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
+
             await _service.RemoveById(id);
             return Ok();
         }
