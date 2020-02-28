@@ -4,11 +4,11 @@ using System.Text;
 
 namespace DAL.Entities
 {
-    public class BaseEntity<TKey>
+    public class BaseEntity
     {
-        public TKey Id { get; set; }
+        public int Id { get; set; }
 
-        public DateTime CreateDateTime { get; private set; } = DateTime.Now;
+        public DateTime CreateDateTime { get; set; }
 
         public DateTime? UpdateDateTime { get; set; }
 

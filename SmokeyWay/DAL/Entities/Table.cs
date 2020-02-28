@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class Table : BaseEntity<int>
+    public class Table : BaseEntity
     {
         public string Identifier { get; set; }
 

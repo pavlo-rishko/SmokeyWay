@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class GameConsoleType : BaseEntity<int>
+    public class GameConsoleType : BaseEntity
     {
         public string Name { get; set; }
 

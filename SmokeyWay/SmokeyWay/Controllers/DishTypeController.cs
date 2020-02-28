@@ -37,7 +37,7 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateDishType([FromBody]DishType dish)
+        public async Task<IActionResult> Create([FromBody]DishType dish)
         {
             if (dish == null)
             {
@@ -48,7 +48,7 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> Update(int id,[FromBody]DishType type)
+        public async Task<IActionResult> UpdateById(int id,[FromBody]DishType type)
         {
             if (id == default)
             {
@@ -59,7 +59,7 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpDelete("remove/{id}")]
-        public async Task<IActionResult> Remove(int id)
+        public async Task<IActionResult> RemoveById(int id)
         {
             if (id == default)
             {

@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class UserRole : BaseEntity<int>
+    public class UserRole : BaseEntity
     {
         public int Name { get; set; }
 

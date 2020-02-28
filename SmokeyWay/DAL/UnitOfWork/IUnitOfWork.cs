@@ -8,6 +8,6 @@ namespace DAL.UnitOfWork
     {
         IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : class;
 
-        Task SaveChangesAsync();
+        Task<int> SaveChangesAsync();
     }
 }

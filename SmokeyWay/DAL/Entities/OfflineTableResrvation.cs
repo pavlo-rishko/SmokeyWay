@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class OfflineTableReservation : BaseEntity<int>
+    public class OfflineTableReservation : BaseEntity
     {
         public int TableId { get; set; }
 

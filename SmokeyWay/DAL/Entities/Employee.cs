@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Entities
 {
-    public class Employee : BaseEntity<int>
+    public class Employee : BaseEntity
     {
         public string FirstName { get; set; }
 

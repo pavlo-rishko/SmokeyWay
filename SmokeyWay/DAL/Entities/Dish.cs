@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class Dish : BaseEntity<int>
+    public class Dish : BaseEntity
     {
         public string Name { get; set; }
 
