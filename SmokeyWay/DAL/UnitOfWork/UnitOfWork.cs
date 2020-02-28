@@ -11,18 +11,20 @@ namespace DAL.UnitOfWork
         {
             Context = context;
         }
+
         private  DbContext Context { get; }
+
         public void Dispose()
         {
             Context.Dispose();
         }
 
-        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
+        public IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : class
         {
-            return new Repository<TEntity>(Context.Set<TEntity>());
+            return new RepositoryBase<TEntity>(Context.Set<TEntity>());
         }
 
-        public Task<int> SaveChangesAsync()
+        public Task SaveChangesAsync()
         {
             return Context.SaveChangesAsync();
         }

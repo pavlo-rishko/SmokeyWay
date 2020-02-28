@@ -36,7 +36,6 @@ namespace SmokeyWay
 
             services.AddMvc();
 
-
            services.AddDbContext<SmokeyWayDbContext>
                 (item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>

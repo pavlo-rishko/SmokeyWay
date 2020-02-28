@@ -52,7 +52,7 @@ namespace SmokeyWay.Controllers
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
-            await _service.UpdateById(id, type.Name);
+            await _service.UpdateById(id, type);
             return Ok(type);
         }
 

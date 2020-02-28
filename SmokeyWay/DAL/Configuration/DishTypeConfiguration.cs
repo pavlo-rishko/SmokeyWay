@@ -14,8 +14,9 @@ namespace DAL.Configuration
 
             builder.Property(x => x.Id).ValueGeneratedOnAdd().IsRequired();
 
-            builder.HasIndex(x => x.Name).IsUnique();
+            builder.Property(x => x.Name).HasMaxLength(45);
 
+            builder.HasIndex(x => x.Name).IsUnique();
         }
     }
 }
