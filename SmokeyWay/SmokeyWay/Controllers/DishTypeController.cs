@@ -18,6 +18,7 @@ namespace SmokeyWay.Controllers
 
         public DishTypeController(IUnitOfWork uow)
         {
+            _uow = uow;
             dishTypeRepository = uow.GetRepository<DishType>();
         }
 
