@@ -4,9 +4,10 @@ using System.Threading.Tasks;
 
 namespace DAL.UnitOfWork
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
-        IRepository<TEntity> Repository<TEntity>() where TEntity : class;
-        Task<int> SaveChangesAsync();
+        IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : class;
+
+        Task SaveChangesAsync();
     }
 }

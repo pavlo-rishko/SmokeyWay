@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
+
         private readonly DbSet<TEntity> _dbSet;
 
-        public Repository(DbSet<TEntity> dbSet)
+        public RepositoryBase(DbSet<TEntity> dbSet)
         {
             _dbSet = dbSet;                                       
         }
