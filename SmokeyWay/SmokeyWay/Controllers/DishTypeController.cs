@@ -14,18 +14,18 @@ namespace SmokeyWay.Controllers
     {  
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IRepositoryBase<DishType> dishTypeRepository;
+        private readonly IRepositoryBase<DishType> _dishTypeRepository;
 
         public DishTypeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            dishTypeRepository = unitOfWork.GetRepository<DishType>();
+            _dishTypeRepository = unitOfWork.GetRepository<DishType>();
         }
 
         [HttpGet]
         public IQueryable GetAll()
         {
-            return dishTypeRepository.GetAll();
+            return _dishTypeRepository.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -33,12 +33,12 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can not be 0");
+                throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
             try
             {
-                var dishtype = await dishTypeRepository.Get(e => e.Id == id);
+                var dishtype = await _dishTypeRepository.Get(e => e.Id == id);
                 return Ok(dishtype);
             }
             catch (Exception ex)
@@ -53,12 +53,12 @@ namespace SmokeyWay.Controllers
         {
             if (dish == null)
             {
-                throw new ArgumentException($"{nameof(dish)} cannot be null");
+                throw new ArgumentException($"{nameof(dish)} can`t be null");
             }
 
             try
             {
-                dishTypeRepository.Add(dish);
+                _dishTypeRepository.Add(dish);
                 await _unitOfWork.SaveChangesAsync();
                 return Ok(dish);
             }
@@ -74,12 +74,12 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
             try
             {
-                DishType currentDishType = await dishTypeRepository.Get(e => e.Id == id);
+                DishType currentDishType = await _dishTypeRepository.Get(e => e.Id == id);
 
                 if (currentDishType == null)
                 {
@@ -87,7 +87,7 @@ namespace SmokeyWay.Controllers
                 }
 
                 currentDishType.Name = dishType.Name;
-                dishTypeRepository.Update(currentDishType);
+                _dishTypeRepository.Update(currentDishType);
                 await _unitOfWork.SaveChangesAsync();
                 return Ok(currentDishType);
             }
@@ -103,13 +103,13 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
             try
             {
-                DishType dishType = await dishTypeRepository.Get(e => e.Id == id);
-                dishTypeRepository.Remove(dishType);
+                DishType dishType = await _dishTypeRepository.Get(e => e.Id == id);
+                _dishTypeRepository.Remove(dishType);
                 await _unitOfWork.SaveChangesAsync();
                 return Ok();
             }
