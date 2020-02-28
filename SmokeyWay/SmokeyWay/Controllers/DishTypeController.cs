@@ -31,7 +31,7 @@ namespace SmokeyWay.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if(id == default)
+            if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} can not be 0");
             }
