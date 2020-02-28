@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public interface IRepositoryBase<TEntity> where TEntity : class
+    public interface IRepositoryBase<TEntity> where TEntity : BaseEntity
     {
         Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null);
 

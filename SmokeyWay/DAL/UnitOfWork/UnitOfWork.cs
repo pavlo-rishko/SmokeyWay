@@ -22,9 +22,9 @@ namespace DAL.UnitOfWork
             Context.Dispose();
         }
 
-        public IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : class
+        public IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
         {
-            return new RepositoryBase<TEntity>(Context.Set<TEntity>());
+            return new BaseRepository<TEntity>(Context.Set<TEntity>());
         }
 
         public async Task<int> SaveChangesAsync()
