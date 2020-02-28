@@ -44,13 +44,13 @@ namespace SmokeyWay.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]DishType dish)
         {
+            if (dish == null)
+            {
+                throw new ArgumentException($"{nameof(dish)} cannot be null");
+            }
+
             try
             {
-                if (dish == null)
-                {
-                    throw new ArgumentException($"{nameof(dish)} cannot be null");
-                }
-
                 dishTypeRepository.Add(dish);
                 await _uow.SaveChangesAsync();
                 return Ok(dish);
@@ -70,17 +70,25 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            DishType currentDishType = await dishTypeRepository.Get(e => e.Id == id);
-
-            if (currentDishType == null)
+            try
             {
-                throw new NullReferenceException($"Error while updating dishtype. DishType with {nameof(id)}={id} not found");
-            }
+                DishType currentDishType = await dishTypeRepository.Get(e => e.Id == id);
 
-            currentDishType.Name = dishType.Name;
-            dishTypeRepository.Update(dishType);
-            await _uow.SaveChangesAsync();
-            return Ok(currentDishType);
+                if (currentDishType == null)
+                {
+                    throw new NullReferenceException($"Error while updating dishtype. DishType with {nameof(id)}={id} not found");
+                }
+
+                currentDishType.Name = dishType.Name;
+                dishTypeRepository.Update(dishType);
+                await _uow.SaveChangesAsync();
+                return Ok(currentDishType);
+            }
+            catch (Exception ex)
+            {
+                ex.Data["dishType"] = dishType;
+                throw;
+            }
         }
 
         [HttpDelete("remove/{id}")]
