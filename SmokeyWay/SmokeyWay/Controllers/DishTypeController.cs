@@ -11,8 +11,7 @@ namespace SmokeyWay.Controllers
     [Route("api/dishTypes")]
     [ApiController]
     public class DishTypeController : ControllerBase
-    {
-      
+    {  
         private readonly IUnitOfWork _uow;
 
         private readonly IRepositoryBase<DishType> dishTypeRepository;
@@ -50,11 +49,12 @@ namespace SmokeyWay.Controllers
                 {
                     throw new ArgumentException($"{nameof(dish)} cannot be null");
                 }
+
                 dishTypeRepository.Add(dish);
                 await _uow.SaveChangesAsync();
                 return Ok(dish);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ex.Data["dish"] = dish;
                 throw;
@@ -62,12 +62,13 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id,[FromBody]DishType dishType)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]DishType dishType)
         {
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
+
             DishType currentDishType = await dishTypeRepository.Get(e => e.Id == id);
 
             if (currentDishType == null)
@@ -88,6 +89,7 @@ namespace SmokeyWay.Controllers
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
+
             DishType dishType = await dishTypeRepository.Get(e => e.Id == id);
             dishTypeRepository.Remove(dishType);
             await _uow.SaveChangesAsync();
