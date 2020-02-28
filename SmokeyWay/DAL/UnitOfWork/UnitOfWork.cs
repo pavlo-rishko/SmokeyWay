@@ -22,7 +22,7 @@ namespace DAL.UnitOfWork
             Context.Dispose();
         }
 
-        public IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : class
+        public IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
         {
             return new BaseRepository<TEntity>(Context.Set<TEntity>());
         }

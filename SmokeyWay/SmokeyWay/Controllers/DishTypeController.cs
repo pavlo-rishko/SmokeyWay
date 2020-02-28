@@ -87,7 +87,7 @@ namespace SmokeyWay.Controllers
                 }
 
                 currentDishType.Name = dishType.Name;
-                dishTypeRepository.Update(dishType);
+                dishTypeRepository.Update(currentDishType);
                 await _unitOfWork.SaveChangesAsync();
                 return Ok(currentDishType);
             }
