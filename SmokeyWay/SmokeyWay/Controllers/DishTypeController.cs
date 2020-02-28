@@ -12,14 +12,14 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class DishTypeController : ControllerBase
     {  
-        private readonly IUnitOfWork _uow;
+        private readonly IUnitOfWork _unitOfWork;
 
         private readonly IRepositoryBase<DishType> dishTypeRepository;
 
-        public DishTypeController(IUnitOfWork uow)
+        public DishTypeController(IUnitOfWork unitOfWork)
         {
-            _uow = uow;
-            dishTypeRepository = uow.GetRepository<DishType>();
+            _unitOfWork = unitOfWork;
+            dishTypeRepository = unitOfWork.GetRepository<DishType>();
         }
 
         [HttpGet]
@@ -52,7 +52,7 @@ namespace SmokeyWay.Controllers
             try
             {
                 dishTypeRepository.Add(dish);
-                await _uow.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
                 return Ok(dish);
             }
             catch (Exception ex)
@@ -81,7 +81,7 @@ namespace SmokeyWay.Controllers
 
                 currentDishType.Name = dishType.Name;
                 dishTypeRepository.Update(dishType);
-                await _uow.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
                 return Ok(currentDishType);
             }
             catch (Exception ex)
@@ -101,7 +101,7 @@ namespace SmokeyWay.Controllers
 
             DishType dishType = await dishTypeRepository.Get(e => e.Id == id);
             dishTypeRepository.Remove(dishType);
-            await _uow.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return Ok();
         }
     }
