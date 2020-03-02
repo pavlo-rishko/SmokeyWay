@@ -8,7 +8,7 @@ namespace DAL.Configuration
     {
         public void Configure(EntityTypeBuilder<EmployeePosition> builder)
         {
-            builder.ToTable("Position");
+            builder.ToTable("EmployeePosition");
 
             builder.HasKey(x => x.Id);
 
