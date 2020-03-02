@@ -36,8 +36,15 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} can't be 0");
             }
 
-            var dish = await _dishRepository.Get(x => x.Id == id);
-            return Ok(dish);
+            try
+            {
+                var dish = await _dishRepository.Get(x => x.Id == id);
+                return Ok(dish);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpPost("create")]
@@ -48,9 +55,17 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(dish)} can't be null");
             }
 
-            _dishRepository.Add(dish);
-            await _unitOfWork.SaveChangesAsync();
-            return Ok(dish);
+            try
+            {
+                _dishRepository.Add(dish);
+                await _unitOfWork.SaveChangesAsync();
+                return Ok(dish);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         [HttpPut("update/{id}")]
