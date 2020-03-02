@@ -2,7 +2,7 @@
 
 namespace DAL.Entities
 {
-    public class Position : BaseEntity
+    public class EmployeePosition : BaseEntity
     {
         public string Name { get; set; }
 

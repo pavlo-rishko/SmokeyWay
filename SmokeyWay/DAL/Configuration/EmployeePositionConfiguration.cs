@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DAL.Configuration
 {
-    public class PositionConfiguration : IEntityTypeConfiguration<Position>
+    public class EmployeePositionConfiguration : IEntityTypeConfiguration<EmployeePosition>
     {
-        public void Configure(EntityTypeBuilder<Position> builder)
+        public void Configure(EntityTypeBuilder<EmployeePosition> builder)
         {
             builder.ToTable("Position");
 

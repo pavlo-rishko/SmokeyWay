@@ -19,7 +19,7 @@ namespace DAL.Entities
 
         public int PositionId { get; set; }
 
-        public Position Position { get; set; }
+        public EmployeePosition Position { get; set; }
 
         public int GenderId { get; set; }
 

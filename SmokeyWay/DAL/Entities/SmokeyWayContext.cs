@@ -26,7 +26,7 @@ namespace DAL.Entities
 
         public DbSet<Department> Departments { get; set; }
 
-        public DbSet<Position> Positions { get; set; }
+        public DbSet<EmployeePosition> Positions { get; set; }
 
         public DbSet<Table> Tables { get; set; }
 
@@ -49,7 +49,7 @@ namespace DAL.Entities
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrderDishConfiguration());
-            modelBuilder.ApplyConfiguration(new PositionConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeePositionConfiguration());
             modelBuilder.ApplyConfiguration(new TableConfiguration());
 
             modelBuilder.ApplyConfiguration(new GameConfiguration());
