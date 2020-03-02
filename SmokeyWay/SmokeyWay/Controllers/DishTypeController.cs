@@ -1,5 +1,6 @@
-﻿using BLL.Interfaces;
-using DAL.Entities;
+﻿using DAL.Entities;
+using DAL.Repository;
+using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -10,18 +11,21 @@ namespace SmokeyWay.Controllers
     [Route("api/dishTypes")]
     [ApiController]
     public class DishTypeController : ControllerBase
-    {
-        private readonly IDishTypeService _service;
+    {  
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DishTypeController(IDishTypeService service)
+        private readonly IRepositoryBase<DishType> _dishTypeRepository;
+
+        public DishTypeController(IUnitOfWork unitOfWork)
         {
-            _service = service;
+            _unitOfWork = unitOfWork;
+            _dishTypeRepository = unitOfWork.GetRepository<DishType>();
         }
 
         [HttpGet]
         public IQueryable GetAll()
         {
-            return _service.GetAll();
+            return _dishTypeRepository.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -29,35 +33,69 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can not be 0");
+                throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
-            var dishtype = await _service.GetById(id);
-            return Ok(dishtype);
+            try
+            {
+                var dishtype = await _dishTypeRepository.Get(e => e.Id == id);
+                return Ok(dishtype);
+            }
+            catch (Exception ex)
+            {
+                ex.Data["id"] = id;
+                throw;
+            }           
         }
 
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]DishType dish)
         {
-            if (dish == null)
+            if (dish.Name == null)
             {
-                throw new ArgumentException($"{nameof(dish)} cannot be null");
+                throw new ArgumentException($"{nameof(dish)} can`t be null");
             }
 
-            await _service.Add(dish);
-            return Ok(dish);
+            try
+            {
+                _dishTypeRepository.Add(dish);
+                await _unitOfWork.SaveChangesAsync();
+                return Ok(dish);
+            }
+            catch (Exception ex)
+            {
+                ex.Data["dish"] = dish;
+                throw;
+            }          
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id, [FromBody]DishType type)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]DishType dishType)
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
-            await _service.UpdateById(id, type);
-            return Ok(type);
+            try
+            {
+                DishType currentDishType = await _dishTypeRepository.Get(e => e.Id == id);
+
+                if (currentDishType == null)
+                {
+                    throw new NullReferenceException($"Error while updating dishtype. DishType with {nameof(id)}={id} not found");
+                }
+
+                currentDishType.Name = dishType.Name;
+                _dishTypeRepository.Update(currentDishType);
+                await _unitOfWork.SaveChangesAsync();
+                return Ok(currentDishType);
+            }
+            catch (Exception ex)
+            {
+                ex.Data["dishType"] = dishType;
+                throw;
+            }
         }
 
         [HttpDelete("remove/{id}")]
@@ -65,11 +103,21 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
-            await _service.RemoveById(id);
-            return Ok();
+            try
+            {
+                DishType dishType = await _dishTypeRepository.Get(e => e.Id == id);
+                _dishTypeRepository.Remove(dishType);
+                await _unitOfWork.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                ex.Data["id"] = id;
+                throw;
+            }
         }
     }
 }
