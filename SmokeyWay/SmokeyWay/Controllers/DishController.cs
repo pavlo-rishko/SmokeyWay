@@ -66,7 +66,6 @@ namespace SmokeyWay.Controllers
             {
                 throw new Exception($"Error while adding dish nameof{nameof(dish)}");
             }
-
         }
 
         [HttpPut("update/{id}")]
