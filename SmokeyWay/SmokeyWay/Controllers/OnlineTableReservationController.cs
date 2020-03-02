@@ -85,6 +85,9 @@ namespace SmokeyWay.Controllers
                     throw new NullReferenceException($"Error while updating online table reservation. Online table reservation with {nameof(id)}={id} not found");
                 }
 
+                currentOnlineTableReservation.TableId = onlineTableReservation.TableId;
+                currentOnlineTableReservation.UserId = onlineTableReservation.UserId;
+
                 _onlineTableReservationRepository.Update(currentOnlineTableReservation);
                 await _unitOfWork.SaveChangesAsync();
 
