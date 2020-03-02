@@ -20,7 +20,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.Description).HasMaxLength(1000);
 
-            builder.Property(x => x.IsAvalialable);
+            builder.Property(x => x.IsAvailable);
 
             builder.Property(x => x.TypeId);
             

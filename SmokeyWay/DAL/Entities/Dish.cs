@@ -10,7 +10,7 @@ namespace DAL.Entities
 
         public string Description { get; set; }
 
-        public bool IsAvalialable { get; set; }
+        public bool IsAvailable { get; set; }
 
         public int TypeId { get; set; }
 
