@@ -41,8 +41,9 @@ namespace SmokeyWay.Controllers
                 var dish = await _dishRepository.Get(x => x.Id == id);
                 return Ok(dish);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
         }
@@ -61,9 +62,9 @@ namespace SmokeyWay.Controllers
                 await _unitOfWork.SaveChangesAsync();
                 return Ok(dish);
             }
-            catch (Exception)
+            catch
             {
-                throw;
+                throw new Exception($"Error while adding dish nameof{nameof(dish)}");
             }
 
         }
@@ -116,13 +117,14 @@ namespace SmokeyWay.Controllers
                 var dish = await _dishRepository.Get(x => x.Id == id);
                 _dishRepository.Remove(dish);
                 await _unitOfWork.SaveChangesAsync();
+
+                return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
-
-            return Ok();
         }
     }
 }
