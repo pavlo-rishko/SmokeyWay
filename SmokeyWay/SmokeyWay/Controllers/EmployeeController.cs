@@ -89,7 +89,6 @@ namespace SmokeyWay.Controllers
                 currentEmployee.LastName = employee.LastName;
                 currentEmployee.DepartmentId = employee.DepartmentId;
                 currentEmployee.PhoneNumber = employee.PhoneNumber;
-                currentEmployee.HireDate = employee.HireDate;
                 currentEmployee.PositionId = employee.PositionId;
                 currentEmployee.GenderId = employee.GenderId;
                 currentEmployee.BirthDate = employee.BirthDate;
