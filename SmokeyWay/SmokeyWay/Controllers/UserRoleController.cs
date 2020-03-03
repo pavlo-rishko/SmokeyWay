@@ -64,7 +64,7 @@ namespace SmokeyWay.Controllers
             }
             catch (Exception ex)
             {
-                ex.Data["dish"] = userRole;
+                ex.Data["userRole"] = userRole;
                 throw;
             }
         }
@@ -93,7 +93,7 @@ namespace SmokeyWay.Controllers
             }
             catch (Exception ex)
             {
-                ex.Data["dishType"] = userRole;
+                ex.Data["userRole"] = userRole;
                 throw;
             }
         }
