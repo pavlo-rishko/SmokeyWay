@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DAL.UnitOfWork;
 using FluentValidation.AspNetCore;
+using FluentValidation;
+using SmokeyWay.Validators;
 
 namespace SmokeyWay
 {
@@ -35,7 +37,8 @@ namespace SmokeyWay
 
             services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
-               new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));            
+               new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
+            services.AddTransient<IValidator<UserRole>, UserRoleValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -44,7 +44,6 @@ namespace DAL.Entities
 
         public DbSet<OfflineTableReservation> OfflineTableReservations { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
