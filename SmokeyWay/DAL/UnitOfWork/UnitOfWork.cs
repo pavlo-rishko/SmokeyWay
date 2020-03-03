@@ -38,11 +38,11 @@ namespace DAL.UnitOfWork
             {
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((BaseEntity) entityEntry.Entity).CreateDateTime = DateTime.Now;
+                    ((BaseEntity)entityEntry.Entity).CreateDateTime = DateTime.Now;
                 }
                 else if (entityEntry.State == EntityState.Modified)
                 {
-                    ((BaseEntity) entityEntry.Entity).UpdateDateTime = DateTime.Now;
+                    ((BaseEntity)entityEntry.Entity).UpdateDateTime = DateTime.Now;
                 }
             }
 

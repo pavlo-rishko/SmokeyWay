@@ -52,6 +52,10 @@
       <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Update="Migrations\20200303113908_CascadeDeletionOnlineReservations5.cs">
+      <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Update="Migrations\SmokeyWayDbContextModelSnapshot.cs">
       <ExcludeFromSourceAnalysis>True</ExcludeFromSourceAnalysis>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
