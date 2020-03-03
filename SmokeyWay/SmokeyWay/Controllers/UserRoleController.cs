@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IGenericRepository<UserRole> _userRoleRepository;
 
-        public UserRoleController(IUnitOfWork unitOfWork)
+        private readonly IValidator<UserRole> _validator;
+
+        public UserRoleController(IUnitOfWork unitOfWork, IValidator<UserRole> validator)
         {
             _unitOfWork = unitOfWork;
             _userRoleRepository = unitOfWork.GetRepository<UserRole>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -51,9 +55,10 @@ namespace SmokeyWay.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]UserRole userRole)
         {
-            if (userRole == null)
+            var validationResult = _validator.Validate(userRole);
+            if (!validationResult.IsValid)
             {
-                throw new ArgumentException($"{nameof(userRole)} can`t be null");
+                throw new ArgumentException($"{nameof(userRole)} is not valid");
             }
 
             try
@@ -121,4 +126,3 @@ namespace SmokeyWay.Controllers
         }
     }
 }
-
