@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
-    [Route("api/dishes")]
+    [Route("api/employees")]
     [ApiController]
-    public class DishController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
-        private readonly IGenericRepository<Dish> _dishRepository;
+        private readonly IGenericRepository<Employee> _employeeRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public DishController(IUnitOfWork unitOfWork)
+        public EmployeeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _dishRepository = unitOfWork.GetRepository<Dish>();
+            _employeeRepository = unitOfWork.GetRepository<Employee>();
         }
 
         [HttpGet]
         public IQueryable GetAll()
         {
-            return _dishRepository.GetAll();
+            return _employeeRepository.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -38,8 +38,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var dish = await _dishRepository.Get(x => x.Id == id);
-                return Ok(dish);
+                var employee = await _employeeRepository.Get(x => x.Id == id);
+                return Ok(employee);
             }
             catch (Exception ex)
             {
@@ -49,27 +49,27 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync([FromBody]Dish dish)
+        public async Task<IActionResult> CreateAsync([FromBody]Employee employee)
         {
-            if (dish == null)
+            if (employee == null)
             {
-                throw new ArgumentException($"{nameof(dish)} can't be null");
+                throw new ArgumentException($"{nameof(employee)} can't be null");
             }
 
             try
             {
-                _dishRepository.Add(dish);
+                _employeeRepository.Add(employee);
                 await _unitOfWork.SaveChangesAsync();
-                return Ok(dish);
+                return Ok(employee);
             }
             catch
             {
-                throw new Exception($"Error while adding dish nameof{nameof(dish)}");
+                throw new Exception($"Error while adding employee nameof{nameof(employee)}");
             }
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id, [FromBody]Dish dish)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]Employee employee)
         {
             if (id == default)
             {
@@ -78,23 +78,25 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var currentDish = await _dishRepository.Get(x => x.Id == id);
+                var currentEmployee = await _employeeRepository.Get(x => x.Id == id);
 
-                if (currentDish == null)
+                if (currentEmployee == null)
                 {
-                    throw new NullReferenceException($"Error while updating dish. Dish with {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while updating employee. Employee with {nameof(id)}={id} not found");
                 }
 
-                currentDish.Name = dish.Name;
-                currentDish.Price = dish.Price;
-                currentDish.Description = dish.Description;
-                currentDish.TypeId = dish.TypeId;
-                currentDish.IsAvailable = dish.IsAvailable;
+                currentEmployee.FirstName = employee.FirstName;
+                currentEmployee.LastName = employee.LastName;
+                currentEmployee.DepartmentId = employee.DepartmentId;
+                currentEmployee.PhoneNumber = employee.PhoneNumber;
+                currentEmployee.PositionId = employee.PositionId;
+                currentEmployee.GenderId = employee.GenderId;
+                currentEmployee.BirthDate = employee.BirthDate;
 
-                _dishRepository.Update(currentDish);
+                _employeeRepository.Update(currentEmployee);
                 await _unitOfWork.SaveChangesAsync();
 
-                return Ok(currentDish);
+                return Ok(currentEmployee);
             }
             catch (Exception ex)
             {
@@ -113,17 +115,17 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var dish = await _dishRepository.Get(x => x.Id == id);
-                _dishRepository.Remove(dish);
+                var employee = await _employeeRepository.Get(x => x.Id == id);
+                _employeeRepository.Remove(employee);
                 await _unitOfWork.SaveChangesAsync();
-
-                return Ok();
             }
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
                 throw;
             }
+
+            return Ok();
         }
     }
 }

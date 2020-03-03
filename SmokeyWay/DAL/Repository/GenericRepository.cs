@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repository
 {
-    public class BaseRepository<TEntity> : IRepositoryBase<TEntity> where TEntity : BaseEntity
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly DbSet<TEntity> _dbSet;
 
-        public BaseRepository(DbSet<TEntity> dbSet)
+        public GenericRepository(DbSet<TEntity> dbSet)
         {
             _dbSet = dbSet;                                       
         }

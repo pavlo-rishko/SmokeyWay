@@ -13,6 +13,6 @@ namespace DAL.Entities
 
         public DateTime LicenseEndDate { get; set; }
         
-        public IList<GameConsoleGame> GameConsolesGames { get; set; }
+        public IList<GameConsoleToGame> GameConsolesGames { get; set; }
     }
 }

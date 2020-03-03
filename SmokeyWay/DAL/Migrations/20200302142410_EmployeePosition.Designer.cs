@@ -4,14 +4,16 @@ using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(SmokeyWayDbContext))]
-    partial class SmokeyWayDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200302142410_EmployeePosition")]
+    partial class EmployeePosition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,6 +146,9 @@ namespace DAL.Migrations
                     b.Property<int>("GenderId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(45)")
@@ -193,7 +198,7 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeePosition");
+                    b.ToTable("Position");
                 });
 
             modelBuilder.Entity("DAL.Entities.Game", b =>
@@ -251,7 +256,7 @@ namespace DAL.Migrations
                     b.ToTable("GameConsole");
                 });
 
-            modelBuilder.Entity("DAL.Entities.GameConsoleToGame", b =>
+            modelBuilder.Entity("DAL.Entities.GameConsoleGame", b =>
                 {
                     b.Property<int>("GameConsoleId")
                         .HasColumnType("int");
@@ -263,7 +268,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("GameConsoleToGame");
+                    b.ToTable("GameConsoleGame");
                 });
 
             modelBuilder.Entity("DAL.Entities.GameConsoleType", b =>
@@ -277,8 +282,7 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(45)")
-                        .HasMaxLength(45);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDateTime")
                         .HasColumnType("datetime2");
@@ -580,7 +584,7 @@ namespace DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DAL.Entities.GameConsoleToGame", b =>
+            modelBuilder.Entity("DAL.Entities.GameConsoleGame", b =>
                 {
                     b.HasOne("DAL.Entities.GameConsole", "GameConsole")
                         .WithMany("GameConsolesGames")
@@ -600,7 +604,7 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.Employee", "Employee")
                         .WithMany("OfflineTableResrvations")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.Table", "Table")
@@ -621,7 +625,7 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.User", "User")
                         .WithMany("OnlineTableReservations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

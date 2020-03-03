@@ -15,11 +15,9 @@ namespace DAL.Entities
 
         public string PhoneNumber { get; set; }
 
-        public DateTime HireDate { get; set; }
-
         public int PositionId { get; set; }
 
-        public Position Position { get; set; }
+        public EmployeePosition Position { get; set; }
 
         public int GenderId { get; set; }
 

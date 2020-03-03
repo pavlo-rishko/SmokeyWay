@@ -3,22 +3,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Entities
 {
-    public class SmokeyWayDbContext : DbContext
+    public sealed class SmokeyWayDbContext : DbContext
     {
         public SmokeyWayDbContext(DbContextOptions options) : base(options)
         {
            Database.Migrate();
         }
-        
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserRole> UserRoles { get; set; }
 
         public DbSet<Gender> Genders { get; set; }
-
-        public DbSet<OrderDish> UsersDishes { get; set; }
-
+        
         public DbSet<Dish> Dishes { get; set; }
+
+        public DbSet<OrderDish> OrderDishes { get; set; }
 
         public DbSet<DishType> DishTypes { get; set; }
 
@@ -26,13 +26,24 @@ namespace DAL.Entities
 
         public DbSet<Department> Departments { get; set; }
 
-        public DbSet<Position> Positions { get; set; }
-
         public DbSet<Table> Tables { get; set; }
 
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OnlineTableReservation> OnlineTableReservations { get; set; }
+
+        public DbSet<EmployeePosition> EmployeePositions { get; set; }
+
+        public DbSet<Game> Games { get; set; }
+
+        public DbSet<GameConsole> GameConsoles { get; set; }
+
+        public DbSet<GameConsoleType> GameConsoleTypes { get; set; }
+
+        public DbSet<GameConsoleToGame> GameConsoleToGames { get; set; }
+
+        public DbSet<OfflineTableReservation> OfflineTableReservations { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,17 +57,17 @@ namespace DAL.Entities
 
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new OnlineTableReservationConfiguration());
+            modelBuilder.ApplyConfiguration(new OfflineTableReservationConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
             modelBuilder.ApplyConfiguration(new OrderDishConfiguration());
-            modelBuilder.ApplyConfiguration(new PositionConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeePositionConfiguration());
             modelBuilder.ApplyConfiguration(new TableConfiguration());
 
             modelBuilder.ApplyConfiguration(new GameConfiguration());
             modelBuilder.ApplyConfiguration(new GameConsoleConfiguration());
-            modelBuilder.ApplyConfiguration(new GameConsoleGameConfiguration());
-
-            modelBuilder.ApplyConfiguration(new OfflineTableReservationConfiguration());
+            modelBuilder.ApplyConfiguration(new GameConsoleTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new GameConsoleToGameConfiguration());
         }
     }
 }

@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
-    [Route("api/dishes")]
+    [Route("api/tables")]
     [ApiController]
-    public class DishController : ControllerBase
+    public class TableController : ControllerBase
     {
-        private readonly IGenericRepository<Dish> _dishRepository;
+        private readonly IGenericRepository<Table> _tableRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public DishController(IUnitOfWork unitOfWork)
+        public TableController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _dishRepository = unitOfWork.GetRepository<Dish>();
+            _tableRepository = unitOfWork.GetRepository<Table>();
         }
 
         [HttpGet]
         public IQueryable GetAll()
         {
-            return _dishRepository.GetAll();
+            return _tableRepository.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -38,8 +38,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var dish = await _dishRepository.Get(x => x.Id == id);
-                return Ok(dish);
+                var table = await _tableRepository.Get(x => x.Id == id);
+                return Ok(table);
             }
             catch (Exception ex)
             {
@@ -49,27 +49,27 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync([FromBody]Dish dish)
+        public async Task<IActionResult> CreateAsync([FromBody]Table table)
         {
-            if (dish == null)
+            if (table == null)
             {
-                throw new ArgumentException($"{nameof(dish)} can't be null");
+                throw new ArgumentException($"{nameof(table)} can't be null");
             }
 
             try
             {
-                _dishRepository.Add(dish);
+                _tableRepository.Add(table);
                 await _unitOfWork.SaveChangesAsync();
-                return Ok(dish);
+                return Ok(table);
             }
             catch
             {
-                throw new Exception($"Error while adding dish nameof{nameof(dish)}");
+                throw new Exception($"Error while adding table nameof{nameof(table)}");
             }
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id, [FromBody]Dish dish)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]Table table)
         {
             if (id == default)
             {
@@ -78,23 +78,22 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var currentDish = await _dishRepository.Get(x => x.Id == id);
+                var currentTable = await _tableRepository.Get(x => x.Id == id);
 
-                if (currentDish == null)
+                if (currentTable == null)
                 {
-                    throw new NullReferenceException($"Error while updating dish. Dish with {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while updating table. Table with {nameof(id)}={id} not found");
                 }
 
-                currentDish.Name = dish.Name;
-                currentDish.Price = dish.Price;
-                currentDish.Description = dish.Description;
-                currentDish.TypeId = dish.TypeId;
-                currentDish.IsAvailable = dish.IsAvailable;
+                currentTable.Identifier = table.Identifier;
+                currentTable.DepartmentId = table.DepartmentId;
+                currentTable.SeatingCapacity = table.SeatingCapacity;
+                currentTable.GameConsoleId = table.GameConsoleId;
 
-                _dishRepository.Update(currentDish);
+                _tableRepository.Update(currentTable);
                 await _unitOfWork.SaveChangesAsync();
 
-                return Ok(currentDish);
+                return Ok(currentTable);
             }
             catch (Exception ex)
             {
@@ -113,17 +112,17 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var dish = await _dishRepository.Get(x => x.Id == id);
-                _dishRepository.Remove(dish);
+                var table = await _tableRepository.Get(x => x.Id == id);
+                _tableRepository.Remove(table);
                 await _unitOfWork.SaveChangesAsync();
-
-                return Ok();
             }
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
                 throw;
             }
+
+            return Ok();
         }
     }
 }

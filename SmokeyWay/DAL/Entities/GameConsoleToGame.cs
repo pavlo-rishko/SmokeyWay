@@ -1,6 +1,6 @@
 ﻿namespace DAL.Entities
 {
-    public class GameConsoleGame
+    public class GameConsoleToGame
     {
         public int GameId { get; set; }
 

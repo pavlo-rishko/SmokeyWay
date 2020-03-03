@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DAL.Configuration
 {
-    public class GameConsoleGameConfiguration : IEntityTypeConfiguration<GameConsoleGame>
+    public class GameConsoleToGameConfiguration : IEntityTypeConfiguration<GameConsoleToGame>
     {
-        public void Configure(EntityTypeBuilder<GameConsoleGame> builder)
+        public void Configure(EntityTypeBuilder<GameConsoleToGame> builder)
         {
-            builder.ToTable("GameConsoleGame");
+            builder.ToTable("GameConsoleToGame");
             
             builder.HasKey(x => new { x.GameConsoleId, x.GameId });
 

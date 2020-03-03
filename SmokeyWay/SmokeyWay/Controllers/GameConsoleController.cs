@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
-    [Route("api/dishes")]
+    [Route("api/gameConsoles")]
     [ApiController]
-    public class DishController : ControllerBase
+    public class GameConsoleController : ControllerBase
     {
-        private readonly IGenericRepository<Dish> _dishRepository;
+        private readonly IGenericRepository<GameConsole> _gameConsoleRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public DishController(IUnitOfWork unitOfWork)
+        public GameConsoleController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _dishRepository = unitOfWork.GetRepository<Dish>();
+            _gameConsoleRepository = unitOfWork.GetRepository<GameConsole>();
         }
 
         [HttpGet]
         public IQueryable GetAll()
         {
-            return _dishRepository.GetAll();
+            return _gameConsoleRepository.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -38,8 +38,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var dish = await _dishRepository.Get(x => x.Id == id);
-                return Ok(dish);
+                var gameConsole = await _gameConsoleRepository.Get(x => x.Id == id);
+                return Ok(gameConsole);
             }
             catch (Exception ex)
             {
@@ -49,27 +49,27 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync([FromBody]Dish dish)
+        public async Task<IActionResult> CreateAsync([FromBody]GameConsole gameConsole)
         {
-            if (dish == null)
+            if (gameConsole == null)
             {
-                throw new ArgumentException($"{nameof(dish)} can't be null");
+                throw new ArgumentException($"{nameof(gameConsole)} can't be null");
             }
 
             try
             {
-                _dishRepository.Add(dish);
+                _gameConsoleRepository.Add(gameConsole);
                 await _unitOfWork.SaveChangesAsync();
-                return Ok(dish);
+                return Ok(gameConsole);
             }
             catch
             {
-                throw new Exception($"Error while adding dish nameof{nameof(dish)}");
+                throw new Exception($"Error while adding game console nameof{nameof(gameConsole)}");
             }
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id, [FromBody]Dish dish)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]GameConsole gameConsole)
         {
             if (id == default)
             {
@@ -78,23 +78,19 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var currentDish = await _dishRepository.Get(x => x.Id == id);
+                var currentGameConsole = await _gameConsoleRepository.Get(x => x.Id == id);
 
-                if (currentDish == null)
+                if (currentGameConsole == null)
                 {
-                    throw new NullReferenceException($"Error while updating dish. Dish with {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while updating game gonsole. Game console with {nameof(id)}={id} not found");
                 }
 
-                currentDish.Name = dish.Name;
-                currentDish.Price = dish.Price;
-                currentDish.Description = dish.Description;
-                currentDish.TypeId = dish.TypeId;
-                currentDish.IsAvailable = dish.IsAvailable;
+                currentGameConsole.GameConsoleTypeId = gameConsole.GameConsoleTypeId;
 
-                _dishRepository.Update(currentDish);
+                _gameConsoleRepository.Update(currentGameConsole);
                 await _unitOfWork.SaveChangesAsync();
 
-                return Ok(currentDish);
+                return Ok(currentGameConsole);
             }
             catch (Exception ex)
             {
@@ -113,17 +109,17 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var dish = await _dishRepository.Get(x => x.Id == id);
-                _dishRepository.Remove(dish);
+                var gameConsole = await _gameConsoleRepository.Get(x => x.Id == id);
+                _gameConsoleRepository.Remove(gameConsole);
                 await _unitOfWork.SaveChangesAsync();
-
-                return Ok();
             }
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
                 throw;
             }
+
+            return Ok();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,9 +21,9 @@ namespace DAL.UnitOfWork
             Context.Dispose();
         }
 
-        public IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
+        public IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity
         {
-            return new BaseRepository<TEntity>(Context.Set<TEntity>());
+            return new GenericRepository<TEntity>(Context.Set<TEntity>());
         }
 
         public async Task<int> SaveChangesAsync()
@@ -32,18 +31,18 @@ namespace DAL.UnitOfWork
             var entries = Context.ChangeTracker
                 .Entries()
                 .Where(e => e.Entity is BaseEntity && (
-                                e.State == EntityState.Added
-                                || e.State == EntityState.Modified));
+                    e.State == EntityState.Added
+                    || e.State == EntityState.Modified));
 
             foreach (var entityEntry in entries)
             {
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((BaseEntity)entityEntry.Entity).CreateDateTime = DateTime.Now;
+                    ((BaseEntity) entityEntry.Entity).CreateDateTime = DateTime.Now;
                 }
                 else if (entityEntry.State == EntityState.Modified)
                 {
-                    ((BaseEntity)entityEntry.Entity).UpdateDateTime = DateTime.Now;
+                    ((BaseEntity) entityEntry.Entity).UpdateDateTime = DateTime.Now;
                 }
             }
 

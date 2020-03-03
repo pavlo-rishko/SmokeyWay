@@ -22,8 +22,6 @@ namespace DAL.Configuration
 
             builder.Property(x => x.PhoneNumber).HasMaxLength(45);
 
-            builder.Property(x => x.HireDate);
-
             builder.Property(x => x.PositionId).IsRequired();
 
             builder.Property(x => x.GenderId);
@@ -38,6 +36,9 @@ namespace DAL.Configuration
 
             builder.HasOne(x => x.Position).WithMany(x => x.Employees)
                 .HasForeignKey(x => x.PositionId).OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.OfflineTableResrvations).WithOne(x => x.Employee)
+                .HasForeignKey(x => x.EmployeeId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

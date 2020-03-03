@@ -14,7 +14,7 @@ namespace SmokeyWay.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IRepositoryBase<UserRole> _userRoleRepository;
+        private readonly IGenericRepository<UserRole> _userRoleRepository;
 
         public UserRoleController(IUnitOfWork unitOfWork)
         {
@@ -79,7 +79,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                UserRole currentUserRole = await _userRoleRepository.Get(e => e.Id == id);
+                var currentUserRole = await _userRoleRepository.Get(e => e.Id == id);
 
                 if (currentUserRole == null)
                 {
@@ -121,4 +121,3 @@ namespace SmokeyWay.Controllers
         }
     }
 }
-
