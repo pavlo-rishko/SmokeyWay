@@ -79,7 +79,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                UserRole currentUserRole = await _userRoleRepository.Get(e => e.Id == id);
+                var currentUserRole = await _userRoleRepository.Get(e => e.Id == id);
 
                 if (currentUserRole == null)
                 {

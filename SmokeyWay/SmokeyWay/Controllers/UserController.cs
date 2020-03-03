@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                User currentUser = await _userRepository.Get(x => x.Id == id);
+                var currentUser = await _userRepository.Get(x => x.Id == id);
 
                 if (currentUser == null)
                 {

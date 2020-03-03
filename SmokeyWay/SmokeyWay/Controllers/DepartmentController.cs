@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                Department currentDepartment = await _departmentRepository.Get(x => x.Id == id);
+                var currentDepartment = await _departmentRepository.Get(x => x.Id == id);
 
                 if (currentDepartment == null)
                 {

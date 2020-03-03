@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                EmployeePosition currentEmployeePosition = await _employeePositionRepository.Get(x => x.Id == id);
+                var currentEmployeePosition = await _employeePositionRepository.Get(x => x.Id == id);
 
                 if (currentEmployeePosition == null)
                 {

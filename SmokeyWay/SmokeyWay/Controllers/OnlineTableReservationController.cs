@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                OnlineTableReservation currentOnlineTableReservation = await _onlineTableReservationRepository.Get(x => x.Id == id);
+                var currentOnlineTableReservation = await _onlineTableReservationRepository.Get(x => x.Id == id);
 
                 if (currentOnlineTableReservation == null)
                 {

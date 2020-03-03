@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                Game currentGame = await _gameRepository.Get(x => x.Id == id);
+                var currentGame = await _gameRepository.Get(x => x.Id == id);
 
                 if (currentGame == null)
                 {

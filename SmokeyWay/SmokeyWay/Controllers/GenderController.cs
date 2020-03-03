@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                Gender currentGender = await _genderRepository.Get(x => x.Id == id);
+                var currentGender = await _genderRepository.Get(x => x.Id == id);
 
                 if (currentGender == null)
                 {

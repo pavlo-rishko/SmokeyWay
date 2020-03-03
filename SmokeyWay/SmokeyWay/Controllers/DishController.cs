@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                Dish currentDish = await _dishRepository.Get(x => x.Id == id);
+                var currentDish = await _dishRepository.Get(x => x.Id == id);
 
                 if (currentDish == null)
                 {

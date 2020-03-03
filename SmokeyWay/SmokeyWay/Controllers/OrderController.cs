@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                Order currentOrder = await _orderRepository.Get(x => x.Id == id);
+                var currentOrder = await _orderRepository.Get(x => x.Id == id);
 
                 if (currentOrder == null)
                 {

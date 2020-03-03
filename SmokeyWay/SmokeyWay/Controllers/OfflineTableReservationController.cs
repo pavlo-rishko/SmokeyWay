@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                OfflineTableReservation currentOfflineTableReservation = await _offlineTableReservationRepository.Get(x => x.Id == id);
+                var currentOfflineTableReservation = await _offlineTableReservationRepository.Get(x => x.Id == id);
 
                 if (currentOfflineTableReservation == null)
                 {

@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                Table currentTable = await _tableRepository.Get(x => x.Id == id);
+                var currentTable = await _tableRepository.Get(x => x.Id == id);
 
                 if (currentTable == null)
                 {

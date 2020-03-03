@@ -78,7 +78,7 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                GameConsole currentGameConsole = await _gameConsoleRepository.Get(x => x.Id == id);
+                var currentGameConsole = await _gameConsoleRepository.Get(x => x.Id == id);
 
                 if (currentGameConsole == null)
                 {
