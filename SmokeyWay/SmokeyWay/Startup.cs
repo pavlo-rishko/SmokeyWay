@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DAL.UnitOfWork;
+using FluentValidation.AspNetCore;
 
 namespace SmokeyWay
 {
@@ -30,7 +31,7 @@ namespace SmokeyWay
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddMvc();
+            services.AddMvc().AddFluentValidation(); 
 
             services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
