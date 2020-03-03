@@ -12,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class OfflineTableReservationController : ControllerBase
     {
-        private readonly IRepositoryBase<OfflineTableReservation> _offlineTableReservationRepository;
+        private readonly IGenericRepository<OfflineTableReservation> _offlineTableReservationRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -116,8 +116,9 @@ namespace SmokeyWay.Controllers
                 _offlineTableReservationRepository.Remove(offlineTableReservation);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

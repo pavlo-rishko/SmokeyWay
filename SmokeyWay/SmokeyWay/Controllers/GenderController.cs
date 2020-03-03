@@ -12,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class GenderController : ControllerBase
     {
-        private readonly IRepositoryBase<Gender> _genderRepository;
+        private readonly IGenericRepository<Gender> _genderRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -114,8 +114,9 @@ namespace SmokeyWay.Controllers
                 _genderRepository.Remove(gender);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

@@ -10,6 +10,6 @@ namespace DAL.Entities
 
         public Table Table { get; set; }
 
-        public IList<GameConsoleGame> GameConsolesGames { get; set; }
+        public IList<GameConsoleToGame> GameConsolesGames { get; set; }
     }
 }

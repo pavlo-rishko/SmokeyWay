@@ -14,7 +14,7 @@ namespace SmokeyWay.Controllers
     {  
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IRepositoryBase<DishType> _dishTypeRepository;
+        private readonly IGenericRepository<DishType> _dishTypeRepository;
 
         public DishTypeController(IUnitOfWork unitOfWork)
         {

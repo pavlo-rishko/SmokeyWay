@@ -19,7 +19,7 @@ namespace DAL.Entities
 
         public int GenderId { get; set; }
 
-        public virtual Gender Gender { get; set; }
+        public Gender Gender { get; set; }
 
         public string CommunicationLanguage { get; set; }
 
@@ -27,7 +27,7 @@ namespace DAL.Entities
 
         public int RoleId { get; set; }
 
-        public virtual UserRole Role { get; set; }
+        public UserRole Role { get; set; }
 
         public IList<OnlineTableReservation> OnlineTableReservations { get; set; }
     }

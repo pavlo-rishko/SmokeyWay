@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repository
 {
-    public interface IRepositoryBase<TEntity> where TEntity : BaseEntity
+    public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {
         Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate = null);
 

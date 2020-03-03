@@ -3,7 +3,6 @@ using DAL.Repository;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IRepositoryBase<Order> _orderRepository;
+        private readonly IGenericRepository<Order> _orderRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -116,8 +115,9 @@ namespace SmokeyWay.Controllers
                 _orderRepository.Remove(order);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

@@ -4,14 +4,16 @@ using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(SmokeyWayDbContext))]
-    partial class SmokeyWayDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200303105925_CascadeDeletionOnlineReservations")]
+    partial class CascadeDeletionOnlineReservations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,15 +282,14 @@ namespace DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(45)")
-                        .HasMaxLength(45);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateDateTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("GameConsoleType");
+                    b.ToTable("GameConsoleTypes");
                 });
 
             modelBuilder.Entity("DAL.Entities.Gender", b =>
@@ -624,7 +625,7 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.User", "User")
                         .WithMany("OnlineTableReservations")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

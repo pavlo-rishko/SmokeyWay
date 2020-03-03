@@ -12,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class TableController : ControllerBase
     {
-        private readonly IRepositoryBase<Table> _tableRepository;
+        private readonly IGenericRepository<Table> _tableRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -116,8 +116,9 @@ namespace SmokeyWay.Controllers
                 _tableRepository.Remove(table);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

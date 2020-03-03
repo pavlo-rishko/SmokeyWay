@@ -21,7 +21,7 @@ namespace DAL.Configuration
             builder.Property(x => x.UserId);
 
             builder.HasOne(x => x.User).WithMany(x => x.OnlineTableReservations)
-                .HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.Table).WithMany(x => x.OnlineTableReservations)
                 .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);

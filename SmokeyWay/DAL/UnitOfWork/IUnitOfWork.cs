@@ -7,7 +7,7 @@ namespace DAL.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepositoryBase<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
+        IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
 
         Task<int> SaveChangesAsync();
     }

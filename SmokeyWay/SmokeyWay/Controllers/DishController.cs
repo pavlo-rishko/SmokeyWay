@@ -12,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class DishController : ControllerBase
     {
-        private readonly IRepositoryBase<Dish> _dishRepository;
+        private readonly IGenericRepository<Dish> _dishRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 

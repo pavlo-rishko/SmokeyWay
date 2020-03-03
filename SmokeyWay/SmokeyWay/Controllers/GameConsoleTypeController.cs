@@ -12,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class GameConsoleTypeController : ControllerBase
     {
-        private readonly IRepositoryBase<GameConsoleType> _gameConsoleTypeRepository;
+        private readonly IGenericRepository<GameConsoleType> _gameConsoleTypeRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -113,8 +113,9 @@ namespace SmokeyWay.Controllers
                 _gameConsoleTypeRepository.Remove(gameConsoleType);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

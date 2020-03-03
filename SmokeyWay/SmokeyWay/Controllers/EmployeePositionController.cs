@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
-    [Route("api/employees")]
+    [Route("api/employeePositions")]
     [ApiController]
     public class EmployeePositionController : ControllerBase
     {
-        private readonly IRepositoryBase<EmployeePosition> _employeePositionRepository;
+        private readonly IGenericRepository<EmployeePosition> _employeePositionRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -114,8 +114,9 @@ namespace SmokeyWay.Controllers
                 _employeePositionRepository.Remove(employee);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

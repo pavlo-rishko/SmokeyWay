@@ -14,7 +14,7 @@ namespace SmokeyWay.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IRepositoryBase<UserRole> _userRoleRepository;
+        private readonly IGenericRepository<UserRole> _userRoleRepository;
 
         public UserRoleController(IUnitOfWork unitOfWork)
         {

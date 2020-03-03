@@ -12,7 +12,7 @@ namespace SmokeyWay.Controllers
     [ApiController]
     public class DepartmentController : ControllerBase
     {
-        private readonly IRepositoryBase<Department> _departmentRepository;
+        private readonly IGenericRepository<Department> _departmentRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -117,8 +117,9 @@ namespace SmokeyWay.Controllers
                 _departmentRepository.Remove(department);
                 await _unitOfWork.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ex.Data["id"] = id;
                 throw;
             }
 

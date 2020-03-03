@@ -6,6 +6,6 @@ namespace DAL.Entities
     {
         public string Name { get; set; }
 
-        public virtual IList<User> Users { get; set; }
+        public IList<User> Users { get; set; }
     }
 }
