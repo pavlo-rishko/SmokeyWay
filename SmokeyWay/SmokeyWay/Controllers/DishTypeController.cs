@@ -87,6 +87,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
+            var validationResult = _validator.Validate(dishType);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(dishType)} is not valid");
+            }
+
             try
             {
                 var currentDishType = await _dishTypeRepository.Get(e => e.Id == id);

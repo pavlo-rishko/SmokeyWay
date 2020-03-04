@@ -86,6 +86,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
+            var validationResult = _validator.Validate(offlineTableReservation);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
+            }
+
             try
             {
                 var currentOfflineTableReservation = await _offlineTableReservationRepository.Get(x => x.Id == id);

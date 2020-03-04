@@ -86,6 +86,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
+            var validationResult = _validator.Validate(game);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(game)} is not valid");
+            }
+
             try
             {
                 var currentGame = await _gameRepository.Get(x => x.Id == id);

@@ -86,6 +86,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
+            var validationResult = _validator.Validate(user);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(user)} is not valid");
+            }
+
             try
             {
                 var currentUser = await _userRepository.Get(x => x.Id == id);

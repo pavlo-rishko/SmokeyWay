@@ -86,6 +86,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
+            var validationResult = _validator.Validate(department);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(department)} is not valid");
+            }
+
             try
             {
                 var currentDepartment = await _departmentRepository.Get(x => x.Id == id);

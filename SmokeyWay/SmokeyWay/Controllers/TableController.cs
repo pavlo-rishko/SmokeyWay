@@ -86,6 +86,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
+            var validationResult = _validator.Validate(table);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(table)} is not valid");
+            }
+
             try
             {
                 var currentTable = await _tableRepository.Get(x => x.Id == id);

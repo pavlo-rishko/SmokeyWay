@@ -86,6 +86,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
+            var validationResult = _validator.Validate(employeePosition);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(employeePosition)} is not valid");
+            }
+
             try
             {
                 var currentEmployeePosition = await _employeePositionRepository.Get(x => x.Id == id);
