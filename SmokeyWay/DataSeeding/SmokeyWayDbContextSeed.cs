@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using DAL.Entities;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DataSeeding
@@ -10,7 +12,7 @@ namespace DataSeeding
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<SmokeyWayDbContext>();
-            if (!context.Database.EnsureCreated())
+            if (context.Database.EnsureCreated())
             {
                 throw new Exception("Database isn't created");
             }
@@ -51,13 +53,15 @@ namespace DataSeeding
                     context.EmployeePositions.Add(new EmployeePosition()
                     {
                         Name = "Waiter",
-                        Description = "Зустрічає гостей та обслуговує гостей, слудкує за чистотою столів"
+                        Description = "Зустрічає гостей та обслуговує гостей, слудкує за чистотою столів",
+                        CreateDateTime = DateTime.Now
                     });
 
                     context.EmployeePositions.Add(new EmployeePosition()
                     {
                         Name = "Manager",
-                        Description = "Слідкує заусіма процесами, робить замовлення товарів"
+                        Description = "Слідкує заусіма процесами, робить замовлення товарів",
+                        CreateDateTime = DateTime.Now
                     });
 
                     context.SaveChanges();
@@ -210,6 +214,7 @@ namespace DataSeeding
                         PhoneNumber = "380931170239",
                         CreateDateTime = DateTime.Now,
                         PositionId = 1,
+                        GenderId = 1,
                         BirthDate = new DateTime(1978, 08, 05)
                     });
 
@@ -218,7 +223,10 @@ namespace DataSeeding
                         FirstName = "Petro",
                         LastName = "Melnyk",
                         DepartamentId = 2,
+                        PhoneNumber = "380682881038",
+                        CreateDateTime = DateTime.Now,
                         PositionId = 2,
+                        GenderId = 2,
                         BirthDate = new DateTime(1974, 02, 05),
                     });
 
@@ -247,6 +255,7 @@ namespace DataSeeding
                             " and powerful crime figures. The open world design lets players freely" +
                             " roam San Andreas' open countryside and the fictional city of " +
                             "Los Santos, based on Los Angeles.",
+                        CreateDateTime = DateTime.Now,
                         LicenseBeginDate = new DateTime(2020, 04, 03),
                         LicenseEndDate = new DateTime(2020, 03, 04)
                     });
@@ -257,6 +266,7 @@ namespace DataSeeding
                         Description = "The Witcher 3: Wild Hunt[a] is a 2015 action role-playing " +
                                       "game developed and published by CD Projekt and based on The" +
                                       " Witcher series of fantasy novels by Andrzej Sapkowski.",
+                        CreateDateTime = DateTime.Now,
                         LicenseBeginDate = new DateTime(2019, 05, 01),
                         LicenseEndDate = new DateTime(2020, 05, 01)
                     });
@@ -299,6 +309,8 @@ namespace DataSeeding
                     {
                         Identifier = "Kubrik",
                         SeatingCapacity = 2,
+                        DepartamentId = 1,
+                        CreateDateTime = DateTime.Now,
                         GameConsoleId = 1
                     });
 
@@ -306,6 +318,8 @@ namespace DataSeeding
                     {
                         Identifier = "LV114",
                         SeatingCapacity = 4,
+                        DepartamentId = 2,
+                        CreateDateTime = DateTime.Now,
                         GameConsoleId = 2
                     });
 
@@ -325,14 +339,16 @@ namespace DataSeeding
                     {
                         DateTime = new DateTime(2002, 03, 26),
                         TableId = 1,
-                        EmployeeId = 1
+                        EmployeeId = 1,
+                        CreateDateTime = DateTime.Now
                     });
 
                     context.Orders.Add(new Order()
                     {
                         DateTime = new DateTime(1981, 05, 01),
                         TableId = 2,
-                        EmployeeId = 2
+                        EmployeeId = 2,
+                        CreateDateTime = DateTime.Now
                     });
 
                     context.SaveChanges();
@@ -350,6 +366,7 @@ namespace DataSeeding
                     context.OnlineTableReservations.Add(new OnlineTableReservation()
                     {
                         TableId = 1,
+                        UserId = 1,
                         ReservationDateTime = new DateTime(2020, 03, 04, 18, 0, 0),
                         CreateDateTime = DateTime.Now
                     });
@@ -357,6 +374,7 @@ namespace DataSeeding
                     context.OnlineTableReservations.Add(new OnlineTableReservation()
                     {
                         TableId = 2,
+                        UserId = 2,
                         ReservationDateTime = new DateTime(2016, 9, 3, 21, 15, 0, 0),
                         CreateDateTime = DateTime.Now
                     });
