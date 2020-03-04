@@ -10,9 +10,12 @@ namespace DataSeeding
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<SmokeyWayDbContext>();
-            context.Database.EnsureCreated();
+            if (!context.Database.EnsureCreated())
+            {
+                throw new Exception("Database isn't created");
+            }
 
-            // Fields which must be filled first.
+            // Tables which must be filled first.
             if (!context.DishTypes.Any())
             {
                 try
@@ -63,7 +66,6 @@ namespace DataSeeding
                 {
                     throw new Exception($"Error when adding {nameof(context.EmployeePositions)}");
                 }
-
             }
 
             if (!context.GameConsoleTypes.Any())
@@ -78,7 +80,6 @@ namespace DataSeeding
                 {
                     throw new Exception($"Error when adding {nameof(context.GameConsoleTypes)}");
                 }
-
             }
 
             if (!context.Genders.Any())
@@ -95,7 +96,7 @@ namespace DataSeeding
                 }
             }
 
-            // Fields which must be filled secondary.
+            // Tables which must be filled secondary.
             if (!context.Users.Any())
             {
                 try
@@ -119,7 +120,7 @@ namespace DataSeeding
                         PhoneNumber = "380680719107",
                         Email = "ostap.ostap.@gmail.com",
                         EmailConfirmed = false,
-                        BirthDate = new DateTime(2000,08,30),
+                        BirthDate = new DateTime(2000, 08, 30),
                         GenderId = 2,
                         CommunicationLanguage = "English",
                         RoleId = 2
@@ -131,7 +132,6 @@ namespace DataSeeding
                 {
                     throw new Exception($"Error when adding {nameof(context.Users)}");
                 }
-
             }
 
             if (!context.Departaments.Any())
@@ -178,7 +178,6 @@ namespace DataSeeding
                         TypeId = 1,
                         CreateDateTime = DateTime.Now,
                         IsAvailable = true
-
                     });
 
                     context.Dishes.Add(new Dish()
@@ -268,7 +267,6 @@ namespace DataSeeding
                 {
                     throw new Exception($"Error when adding {nameof(context.Games)}");
                 }
-
             }
 
             if (!context.GameConsoles.Any())
@@ -359,7 +357,7 @@ namespace DataSeeding
                     context.OnlineTableReservations.Add(new OnlineTableReservation()
                     {
                         TableId = 2,
-                        ReservationDateTime = new DateTime(2016, 9, 3,21,15,0,0),
+                        ReservationDateTime = new DateTime(2016, 9, 3, 21, 15, 0, 0),
                         CreateDateTime = DateTime.Now
                     });
 
@@ -381,7 +379,7 @@ namespace DataSeeding
                         ClientName = "Dima",
                         ClientPhoneNumber = "380635556451",
                         EmployeeId = 1,
-                        ReservationDateTime = new DateTime(2016, 2,7,14,0,0),
+                        ReservationDateTime = new DateTime(2016, 2, 7, 14, 0, 0),
                         CreateDateTime = DateTime.Now
                     });
 
@@ -391,7 +389,7 @@ namespace DataSeeding
                         ClientName = "Arsen",
                         ClientPhoneNumber = "380395552129",
                         EmployeeId = 2,
-                        ReservationDateTime = new DateTime(2020, 8, 2, 23, 0,0),
+                        ReservationDateTime = new DateTime(2020, 8, 2, 23, 0, 0),
                         CreateDateTime = DateTime.Now
                     });
 

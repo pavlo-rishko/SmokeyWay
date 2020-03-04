@@ -38,8 +38,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var Departament = await _departamentRepository.Get(x => x.Id == id);
-                return Ok(Departament);
+                var departament = await _departamentRepository.Get(x => x.Id == id);
+                return Ok(departament);
             }
             catch (Exception ex)
             {
@@ -49,22 +49,22 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync([FromBody]Departament Departament)
+        public async Task<IActionResult> CreateAsync([FromBody]Departament departament)
         {
-            if (Departament == null)
+            if (departament == null)
             {
-                throw new ArgumentException($"{nameof(Departament)} can't be null");
+                throw new ArgumentException($"{nameof(departament)} can't be null");
             }
 
             try
             {
-                _departamentRepository.Add(Departament);
+                _departamentRepository.Add(departament);
                 await _unitOfWork.SaveChangesAsync();
-                return Ok(Departament);
+                return Ok(departament);
             }
             catch
             {
-                throw new Exception($"Error while adding departament nameof{nameof(Departament)}");
+                throw new Exception($"Error while adding departament nameof{nameof(departament)}");
             }
         }
 

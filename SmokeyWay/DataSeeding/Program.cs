@@ -8,9 +8,9 @@ using SmokeyWay;
 
 namespace DataSeeding
 {
-    static class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
 
@@ -23,15 +23,17 @@ namespace DataSeeding
                 {
                     SmokeyWayDbContextSeed.Initialize(services);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw new Exception("An error occurred seeding the DB.");
+                    throw new Exception("An error occurred seeding the DB.", ex);
                 }
             }
         }
 
-        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+        }
     }
 }
