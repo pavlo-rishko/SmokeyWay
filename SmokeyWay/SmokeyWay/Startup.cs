@@ -39,6 +39,8 @@ namespace SmokeyWay
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
                new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
             services.AddTransient<IValidator<UserRole>, UserRoleValidator>();
+            services.AddTransient<IValidator<User>, UserValidator>();
+            services.AddTransient<IValidator<Table>, TableValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

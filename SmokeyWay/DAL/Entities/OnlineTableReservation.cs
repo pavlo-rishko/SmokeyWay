@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
     public class OnlineTableReservation : BaseEntity
     {

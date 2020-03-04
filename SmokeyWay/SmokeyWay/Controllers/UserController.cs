@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SmokeyWay.Controllers
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public UserController(IUnitOfWork unitOfWork)
+        private readonly IValidator<User> _validator;
+
+        public UserController(IUnitOfWork unitOfWork, IValidator<User> validator)
         {
             _unitOfWork = unitOfWork;
             _userRepository = unitOfWork.GetRepository<User>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -54,6 +58,12 @@ namespace SmokeyWay.Controllers
             if (user == null)
             {
                 throw new ArgumentException($"{nameof(user)} can't be null");
+            }
+
+            var validationResult = _validator.Validate(user);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(user)} is not valid");
             }
 
             try
