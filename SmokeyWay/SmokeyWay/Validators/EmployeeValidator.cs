@@ -9,9 +9,9 @@ namespace SmokeyWay.Validators
         {
             RuleFor(e => e.FirstName).NotNull().Length(1, 45);
             RuleFor(e => e.LastName).NotNull().Length(1, 45);
-            RuleFor(e => e.DepartmentId).NotEqual(0);
+            RuleFor(e => e.DepartmentId).NotEqual(0).NotNull();
             RuleFor(e => e.PhoneNumber).NotNull().Length(1, 45);
-            RuleFor(e => e.PositionId).NotEqual(0);
+            RuleFor(e => e.PositionId).NotEqual(0).NotNull();
             RuleFor(e => e.BirthDate).NotNull();
             RuleFor(e => e.GenderId).NotEqual(0);
         }
