@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public GenderController(IUnitOfWork unitOfWork)
+        private readonly IValidator _validator;
+
+        public GenderController(IUnitOfWork unitOfWork, IValidator validator)
         {
             _unitOfWork = unitOfWork;
             _genderRepository = unitOfWork.GetRepository<Gender>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -54,6 +58,12 @@ namespace SmokeyWay.Controllers
             if (gender == null)
             {
                 throw new ArgumentException($"{nameof(gender)} can't be null");
+            }
+
+            var validationResult = _validator.Validate(gender);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(gender)} is not valid");
             }
 
             try

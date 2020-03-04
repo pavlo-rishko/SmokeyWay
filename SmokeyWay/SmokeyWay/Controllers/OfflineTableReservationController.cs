@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public OfflineTableReservationController(IUnitOfWork unitOfWork)
+        private readonly IValidator _validator;
+
+        public OfflineTableReservationController(IUnitOfWork unitOfWork, IValidator validator)
         {
             _unitOfWork = unitOfWork;
             _offlineTableReservationRepository = unitOfWork.GetRepository<OfflineTableReservation>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -54,6 +58,12 @@ namespace SmokeyWay.Controllers
             if (offlineTableReservation == null)
             {
                 throw new ArgumentException($"{nameof(offlineTableReservation)} can't be null");
+            }
+
+            var validationResult = _validator.Validate(offlineTableReservation);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
             }
 
             try

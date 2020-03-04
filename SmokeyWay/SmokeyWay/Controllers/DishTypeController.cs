@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IGenericRepository<DishType> _dishTypeRepository;
 
-        public DishTypeController(IUnitOfWork unitOfWork)
+        private readonly IValidator _validator;
+
+        public DishTypeController(IUnitOfWork unitOfWork, IValidator validator)
         {
             _unitOfWork = unitOfWork;
             _dishTypeRepository = unitOfWork.GetRepository<DishType>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -54,6 +58,12 @@ namespace SmokeyWay.Controllers
             if (dish.Name == null)
             {
                 throw new ArgumentException($"{nameof(dish)} can`t be null");
+            }
+
+            var validationResult = _validator.Validate(dish);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(dish)} is not valid");
             }
 
             try
