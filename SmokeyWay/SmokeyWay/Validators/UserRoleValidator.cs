@@ -7,7 +7,7 @@ namespace SmokeyWay.Validators
     {
         public UserRoleValidator()
         {
-            RuleFor(x => x.Name).Length(5, 40);
+            RuleFor(x => x.Name).Length(1, 45);
         }
     }
 }

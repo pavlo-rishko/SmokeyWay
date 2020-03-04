@@ -7,8 +7,8 @@ namespace SmokeyWay.Validators
     {
         public GenderValidator()
         {
-            RuleFor(e => e.Name).Length(30).NotNull();
-            RuleFor(e => e.Descriprion).Length(500);
+            RuleFor(e => e.Name).Length(1,45).NotNull();
+            RuleFor(e => e.Descriprion).Length(1000);
         }
     }
 }

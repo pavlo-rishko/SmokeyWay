@@ -7,10 +7,10 @@ namespace SmokeyWay.Validators
     {
         public DepartmentValidator()
         {
-            RuleFor(e => e.Name).Length(2, 150);
-            RuleFor(e => e.Country).Length(2, 100);
-            RuleFor(e => e.City).Length(2, 150);
-            RuleFor(e => e.Street).Length(2, 200);
+            RuleFor(e => e.Name).Length(1, 45);
+            RuleFor(e => e.Country).Length(1, 45);
+            RuleFor(e => e.City).Length(1, 45);
+            RuleFor(e => e.Street).Length(1, 45);
             RuleFor(e => e.HouseNumber).Length(1, 5);
         }
     }

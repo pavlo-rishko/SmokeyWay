@@ -7,7 +7,7 @@ namespace SmokeyWay.Validators
     {
         public DishTypeValidator()
         {
-            RuleFor(e => e.Name).Length(3, 20);            
+            RuleFor(e => e.Name).Length(1, 45);            
         }
     }
 }

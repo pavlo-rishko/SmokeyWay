@@ -7,8 +7,8 @@ namespace SmokeyWay.Validators
     {
         public EmployeePositionValidator()
         {
-            RuleFor(e => e.Name).NotNull().Length(50);
-            RuleFor(e => e.Description).Length(1000);
+            RuleFor(e => e.Name).NotNull().Length(1, 45);
+            RuleFor(e => e.Description).Length(8000);
         }
     }
 }
