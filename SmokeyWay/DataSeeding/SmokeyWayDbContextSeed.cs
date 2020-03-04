@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using DAL.Entities;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DataSeeding
