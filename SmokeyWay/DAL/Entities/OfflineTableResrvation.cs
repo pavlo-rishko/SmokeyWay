@@ -8,9 +8,11 @@ namespace DAL.Entities
 
         public Table Table { get; set; }
 
-        public string UserName { get; set; }
+        public DateTime ReservationDateTime { get; set; }
 
-        public string UserPhoneNumber { get; set; }
+        public string ClientName { get; set; }
+
+        public string ClientPhoneNumber { get; set; }
 
         public int EmployeeId { get; set; }
 

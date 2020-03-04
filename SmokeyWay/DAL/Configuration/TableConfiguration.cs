@@ -16,7 +16,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.Identifier).HasMaxLength(45).IsRequired();
 
-            builder.Property(x => x.DepartmentId).IsRequired();
+            builder.Property(x => x.DepartamentId).IsRequired();
 
             builder.Property(x => x.SeatingCapacity).IsRequired();
 
@@ -28,8 +28,8 @@ namespace DAL.Configuration
             builder.HasMany(x => x.OnlineTableReservations).WithOne(x => x.Table)
                 .HasForeignKey(x => x.TableId).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(x => x.Department).WithMany(x => x.Tables)
-                .HasForeignKey(x => x.DepartmentId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Departament).WithMany(x => x.Tables)
+                .HasForeignKey(x => x.DepartamentId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

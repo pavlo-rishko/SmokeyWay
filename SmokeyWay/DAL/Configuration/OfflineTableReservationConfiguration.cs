@@ -16,9 +16,11 @@ namespace DAL.Configuration
 
             builder.Property(x => x.TableId);
 
-            builder.Property(x => x.UserName).HasMaxLength(45);
+            builder.Property(x => x.ReservationDateTime).IsRequired();
 
-            builder.Property(x => x.UserPhoneNumber).HasMaxLength(45);
+            builder.Property(x => x.ClientName).HasMaxLength(45);
+
+            builder.Property(x => x.ClientPhoneNumber).HasMaxLength(45);
 
             builder.Property(x => x.CreateDateTime);
 
