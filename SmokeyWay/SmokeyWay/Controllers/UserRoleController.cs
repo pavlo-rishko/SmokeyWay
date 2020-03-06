@@ -1,10 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using DAL.Entities;
+﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IGenericRepository<UserRole> _userRoleRepository;
 
-        public UserRoleController(IUnitOfWork unitOfWork)
+        private readonly IValidator<UserRole> _validator;
+
+        public UserRoleController(IUnitOfWork unitOfWork, IValidator<UserRole> validator)
         {
             _unitOfWork = unitOfWork;
             _userRoleRepository = unitOfWork.GetRepository<UserRole>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -38,8 +42,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var userRole = await _userRoleRepository.Get(e => e.Id == id);
-                return Ok(userRole);
+                var dishtype = await _userRoleRepository.Get(e => e.Id == id);
+                return Ok(dishtype);
             }
             catch (Exception ex)
             {
@@ -51,9 +55,10 @@ namespace SmokeyWay.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody]UserRole userRole)
         {
-            if (userRole.Name == null)
+            var validationResult = _validator.Validate(userRole);
+            if (!validationResult.IsValid)
             {
-                throw new ArgumentException($"{nameof(userRole)} can`t be null");
+                throw new ArgumentException($"{nameof(userRole)} is not valid");
             }
 
             try
@@ -64,7 +69,7 @@ namespace SmokeyWay.Controllers
             }
             catch (Exception ex)
             {
-                ex.Data["dish"] = userRole;
+                ex.Data["userRole"] = userRole;
                 throw;
             }
         }
@@ -77,13 +82,19 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
+            var validationResult = _validator.Validate(userRole);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(userRole)} is not valid");
+            }
+
             try
             {
                 var currentUserRole = await _userRoleRepository.Get(e => e.Id == id);
 
                 if (currentUserRole == null)
                 {
-                    throw new NullReferenceException($"Error while updating user role. User role with {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while updating userRole. UserRole with {nameof(id)}={id} not found");
                 }
 
                 currentUserRole.Name = userRole.Name;

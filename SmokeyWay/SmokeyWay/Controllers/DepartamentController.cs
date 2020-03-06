@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public DepartamentController(IUnitOfWork unitOfWork)
+        private readonly IValidator _validator;
+
+        public DepartmentController(IUnitOfWork unitOfWork, IValidator validator)
         {
             _unitOfWork = unitOfWork;
-            _departamentRepository = unitOfWork.GetRepository<Departament>();
+            _departmentRepository = unitOfWork.GetRepository<Department>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -56,6 +60,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(departament)} can't be null");
             }
 
+            var validationResult = _validator.Validate(department);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(department)} is not valid");
+            }
+
             try
             {
                 _departamentRepository.Add(departament);
@@ -74,6 +84,12 @@ namespace SmokeyWay.Controllers
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
+            }
+
+            var validationResult = _validator.Validate(department);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(department)} is not valid");
             }
 
             try

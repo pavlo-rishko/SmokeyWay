@@ -535,8 +535,8 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(50)")
+                    b.Property<int>("Name")
+                        .HasColumnType("int")
                         .HasMaxLength(50);
 
                     b.Property<DateTime?>("UpdateDateTime")

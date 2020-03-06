@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DAL.UnitOfWork;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using SmokeyWay.Validators;
 
 namespace SmokeyWay
 {
@@ -30,11 +33,21 @@ namespace SmokeyWay
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddMvc();
-
+            services.AddMvc().AddFluentValidation();
             services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
-               new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));            
+               new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
+            services.AddTransient<IValidator<UserRole>, UserRoleValidator>();
+            services.AddTransient<IValidator<User>, UserValidator>();
+            services.AddTransient<IValidator<Table>, TableValidator>();
+            services.AddTransient<IValidator<OfflineTableReservation>, OfflineTableReservationValidator>();
+            services.AddTransient<IValidator<Gender>, GenderValidator>();
+            services.AddTransient<IValidator<Game>, GameValidator>();
+            services.AddTransient<IValidator<Employee>, EmployeeValidator>();
+            services.AddTransient<IValidator<EmployeePosition>, EmployeePositionValidator>();
+            services.AddTransient<IValidator<Dish>, DishValidator>();
+            services.AddTransient<IValidator<DishType>, DishTypeValidator>();
+            services.AddTransient<IValidator<Department>, DepartmentValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

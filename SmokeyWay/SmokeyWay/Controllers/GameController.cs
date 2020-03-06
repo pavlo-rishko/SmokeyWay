@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public GameController(IUnitOfWork unitOfWork)
+        private readonly IValidator<Game> _validator;
+
+        public GameController(IUnitOfWork unitOfWork, IValidator<Game> validator)
         {
             _unitOfWork = unitOfWork;
             _gameRepository = unitOfWork.GetRepository<Game>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -56,6 +60,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(game)} can't be null");
             }
 
+            var validationResult = _validator.Validate(game);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(game)} is not valid");
+            }
+
             try
             {
                 _gameRepository.Add(game);
@@ -74,6 +84,12 @@ namespace SmokeyWay.Controllers
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
+            }
+
+            var validationResult = _validator.Validate(game);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(game)} is not valid");
             }
 
             try
