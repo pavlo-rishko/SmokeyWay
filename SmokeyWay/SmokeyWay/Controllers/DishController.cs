@@ -19,7 +19,7 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator<Dish> _validator;
 
-        public DishController(IUnitOfWork unitOfWork, IValidator validator)
+        public DishController(IUnitOfWork unitOfWork, IValidator<Dish> validator)
         {
             _unitOfWork = unitOfWork;
             _dishRepository = unitOfWork.GetRepository<Dish>();
