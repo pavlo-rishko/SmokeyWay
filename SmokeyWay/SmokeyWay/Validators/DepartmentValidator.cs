@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace SmokeyWay.Validators
 {
-    public class DepartmentValidator : AbstractValidator<Department>
+    public class DepartamentValidator : AbstractValidator<Departament>
     {
-        public DepartmentValidator()
+        public DepartamentValidator()
         {
             RuleFor(e => e.Name).Length(1, 45);
             RuleFor(e => e.Country).Length(1, 45);

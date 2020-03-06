@@ -19,10 +19,10 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator _validator;
 
-        public DepartmentController(IUnitOfWork unitOfWork, IValidator validator)
+        public DepartamentController(IUnitOfWork unitOfWork, IValidator validator)
         {
             _unitOfWork = unitOfWork;
-            _departmentRepository = unitOfWork.GetRepository<Department>();
+            _departamentRepository = unitOfWork.GetRepository<Departament>();
             _validator = validator;
         }
 
@@ -60,10 +60,10 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(departament)} can't be null");
             }
 
-            var validationResult = _validator.Validate(department);
+            var validationResult = _validator.Validate(departament);
             if (!validationResult.IsValid)
             {
-                throw new ArgumentException($"{nameof(department)} is not valid");
+                throw new ArgumentException($"{nameof(departament)} is not valid");
             }
 
             try
@@ -86,10 +86,10 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            var validationResult = _validator.Validate(department);
+            var validationResult = _validator.Validate(departament);
             if (!validationResult.IsValid)
             {
-                throw new ArgumentException($"{nameof(department)} is not valid");
+                throw new ArgumentException($"{nameof(departament)} is not valid");
             }
 
             try

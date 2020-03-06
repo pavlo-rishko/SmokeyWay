@@ -47,7 +47,7 @@ namespace SmokeyWay
             services.AddTransient<IValidator<EmployeePosition>, EmployeePositionValidator>();
             services.AddTransient<IValidator<Dish>, DishValidator>();
             services.AddTransient<IValidator<DishType>, DishTypeValidator>();
-            services.AddTransient<IValidator<Department>, DepartmentValidator>();
+            services.AddTransient<IValidator<Departament>, DepartamentValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
