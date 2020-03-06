@@ -10,10 +10,7 @@ namespace DataSeeding
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<SmokeyWayDbContext>();
-            if (context.Database.EnsureCreated())
-            {
-                throw new Exception("Database isn't created");
-            }
+            context.Database.EnsureCreated();
 
             // Tables which must be filled first.
             if (!context.DishTypes.Any())
