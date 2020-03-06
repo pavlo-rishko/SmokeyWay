@@ -18,7 +18,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.LastName).HasMaxLength(45).IsRequired();
 
-            builder.Property(x => x.DepartmentId).IsRequired();
+            builder.Property(x => x.DepartamentId).IsRequired();
 
             builder.Property(x => x.PhoneNumber).HasMaxLength(45);
 
@@ -28,8 +28,8 @@ namespace DAL.Configuration
 
             builder.Property(x => x.BirthDate);
 
-            builder.HasOne(x => x.Department).WithMany(x => x.Employees)
-                .HasForeignKey(x => x.DepartmentId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Departament).WithMany(x => x.Employees)
+                .HasForeignKey(x => x.DepartamentId).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Gender).WithMany(x => x.Employees)
                 .HasForeignKey(x => x.GenderId).OnDelete(DeleteBehavior.Restrict);

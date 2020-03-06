@@ -7,8 +7,8 @@ namespace SmokeyWay.Validators
     {
         public OfflineTableReservationValidator()
         {
-            RuleFor(e => e.UserName).Length(1, 45).NotNull();
-            RuleFor(e => e.UserPhoneNumber).Length(1, 45).NotNull();
+            RuleFor(e => e.ClientName).Length(1, 45).NotNull();
+            RuleFor(e => e.ClientPhoneNumber).Length(1, 45).NotNull();
             RuleFor(e => e.EmployeeId).NotEqual(0);
         }
     }

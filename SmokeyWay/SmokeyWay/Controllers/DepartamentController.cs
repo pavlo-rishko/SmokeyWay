@@ -9,27 +9,27 @@ using System.Threading.Tasks;
 
 namespace SmokeyWay.Controllers
 {
-    [Route("api/departments")]
+    [Route("api/departaments")]
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class DepartamentController : ControllerBase
     {
-        private readonly IGenericRepository<Department> _departmentRepository;
+        private readonly IGenericRepository<Departament> _departamentRepository;
 
         private readonly IUnitOfWork _unitOfWork;
 
         private readonly IValidator _validator;
 
-        public DepartmentController(IUnitOfWork unitOfWork, IValidator validator)
+        public DepartamentController(IUnitOfWork unitOfWork, IValidator validator)
         {
             _unitOfWork = unitOfWork;
-            _departmentRepository = unitOfWork.GetRepository<Department>();
+            _departamentRepository = unitOfWork.GetRepository<Departament>();
             _validator = validator;
         }
 
         [HttpGet]
         public IQueryable GetAll()
         {
-            return _departmentRepository.GetAll();
+            return _departamentRepository.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -42,8 +42,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var department = await _departmentRepository.Get(x => x.Id == id);
-                return Ok(department);
+                var departament = await _departamentRepository.Get(x => x.Id == id);
+                return Ok(departament);
             }
             catch (Exception ex)
             {
@@ -53,64 +53,64 @@ namespace SmokeyWay.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAsync([FromBody]Department department)
+        public async Task<IActionResult> CreateAsync([FromBody]Departament departament)
         {
-            if (department == null)
+            if (departament == null)
             {
-                throw new ArgumentException($"{nameof(department)} can't be null");
+                throw new ArgumentException($"{nameof(departament)} can't be null");
             }
 
-            var validationResult = _validator.Validate(department);
+            var validationResult = _validator.Validate(departament);
             if (!validationResult.IsValid)
             {
-                throw new ArgumentException($"{nameof(department)} is not valid");
+                throw new ArgumentException($"{nameof(departament)} is not valid");
             }
 
             try
             {
-                _departmentRepository.Add(department);
+                _departamentRepository.Add(departament);
                 await _unitOfWork.SaveChangesAsync();
-                return Ok(department);
+                return Ok(departament);
             }
             catch
             {
-                throw new Exception($"Error while adding department nameof{nameof(department)}");
+                throw new Exception($"Error while adding departament nameof{nameof(departament)}");
             }
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateById(int id, [FromBody]Department department)
+        public async Task<IActionResult> UpdateById(int id, [FromBody]Departament departament)
         {
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            var validationResult = _validator.Validate(department);
+            var validationResult = _validator.Validate(departament);
             if (!validationResult.IsValid)
             {
-                throw new ArgumentException($"{nameof(department)} is not valid");
+                throw new ArgumentException($"{nameof(departament)} is not valid");
             }
 
             try
             {
-                var currentDepartment = await _departmentRepository.Get(x => x.Id == id);
+                var currentDepartament = await _departamentRepository.Get(x => x.Id == id);
 
-                if (currentDepartment == null)
+                if (currentDepartament == null)
                 {
-                    throw new NullReferenceException($"Error while updating department. Department with {nameof(id)}={id} not found");
+                    throw new NullReferenceException($"Error while updating departament. Departament with {nameof(id)}={id} not found");
                 }
 
-                currentDepartment.Name = department.Name;
-                currentDepartment.Country = department.Country;
-                currentDepartment.City = department.City;
-                currentDepartment.Street = department.Street;
-                currentDepartment.HouseNumber = department.HouseNumber;
+                currentDepartament.Name = departament.Name;
+                currentDepartament.Country = departament.Country;
+                currentDepartament.City = departament.City;
+                currentDepartament.Street = departament.Street;
+                currentDepartament.HouseNumber = departament.HouseNumber;
 
-                _departmentRepository.Update(currentDepartment);
+                _departamentRepository.Update(currentDepartament);
                 await _unitOfWork.SaveChangesAsync();
 
-                return Ok(currentDepartment);
+                return Ok(currentDepartament);
             }
             catch (Exception ex)
             {
@@ -129,8 +129,8 @@ namespace SmokeyWay.Controllers
 
             try
             {
-                var department = await _departmentRepository.Get(x => x.Id == id);
-                _departmentRepository.Remove(department);
+                var departament = await _departamentRepository.Get(x => x.Id == id);
+                _departamentRepository.Remove(departament);
                 await _unitOfWork.SaveChangesAsync();
             }
             catch (Exception ex)

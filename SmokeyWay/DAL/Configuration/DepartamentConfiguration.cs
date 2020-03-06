@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DAL.Configuration
 {
-    public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
+    public class DepartamentConfiguration : IEntityTypeConfiguration<Departament>
     {
-        public void Configure(EntityTypeBuilder<Department> builder)
+        public void Configure(EntityTypeBuilder<Departament> builder)
         {
-            builder.ToTable("Department");
+            builder.ToTable("Departament");
 
             builder.HasKey(x => x.Id);
 
@@ -24,11 +24,11 @@ namespace DAL.Configuration
 
             builder.Property(x => x.HouseNumber).HasMaxLength(45);
 
-            builder.HasMany(x => x.Tables).WithOne(x => x.Department)
-                .HasForeignKey(x => x.DepartmentId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Tables).WithOne(x => x.Departament)
+                .HasForeignKey(x => x.DepartamentId).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(x => x.Employees).WithOne(x => x.Department)
-                .HasForeignKey(x => x.DepartmentId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Employees).WithOne(x => x.Departament)
+                .HasForeignKey(x => x.DepartamentId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -6,9 +6,9 @@ namespace DAL.Entities
     {
         public string Identifier { get; set; }
 
-        public int DepartmentId { get; set; }
+        public int DepartamentId { get; set; }
 
-        public Department Department { get; set; }
+        public Departament Departament { get; set; }
 
         public int SeatingCapacity { get; set; }
 

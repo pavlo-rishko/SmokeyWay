@@ -24,7 +24,7 @@ namespace DAL.Entities
 
         public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<Department> Departments { get; set; }
+        public DbSet<Departament> Departaments { get; set; }
 
         public DbSet<Table> Tables { get; set; }
 
@@ -50,7 +50,7 @@ namespace DAL.Entities
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new GenderConfiguration());
 
-            modelBuilder.ApplyConfiguration(new DepartmentConfiguration());
+            modelBuilder.ApplyConfiguration(new DepartamentConfiguration());
             modelBuilder.ApplyConfiguration(new DishConfiguration());
             modelBuilder.ApplyConfiguration(new DishTypeConfiguration());
 

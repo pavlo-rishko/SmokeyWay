@@ -102,7 +102,7 @@ namespace SmokeyWay.Controllers
                 }
 
                 currentTable.Identifier = table.Identifier;
-                currentTable.DepartmentId = table.DepartmentId;
+                currentTable.DepartamentId = table.DepartamentId;
                 currentTable.SeatingCapacity = table.SeatingCapacity;
                 currentTable.GameConsoleId = table.GameConsoleId;
 

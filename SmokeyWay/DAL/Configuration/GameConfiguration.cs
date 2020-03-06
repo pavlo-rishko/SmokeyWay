@@ -16,7 +16,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.Name).HasMaxLength(45);
 
-            builder.Property(x => x.Description).HasMaxLength(45);
+            builder.Property(x => x.Description).HasMaxLength(8000);
 
             builder.Property(x => x.LicenseBeginDate);
 

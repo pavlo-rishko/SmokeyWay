@@ -102,8 +102,8 @@ namespace SmokeyWay.Controllers
                 }
 
                 currentOfflineTableReservation.TableId = offlineTableReservation.TableId;
-                currentOfflineTableReservation.UserName = offlineTableReservation.UserName;
-                currentOfflineTableReservation.UserPhoneNumber = offlineTableReservation.UserPhoneNumber;
+                currentOfflineTableReservation.ClientName = offlineTableReservation.ClientName;
+                currentOfflineTableReservation.ClientPhoneNumber = offlineTableReservation.ClientPhoneNumber;
                 currentOfflineTableReservation.EmployeeId = offlineTableReservation.EmployeeId;
 
                 _offlineTableReservationRepository.Update(currentOfflineTableReservation);
