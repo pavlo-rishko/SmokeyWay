@@ -17,9 +17,9 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IValidator _validator;
+        private readonly IValidator<EmployeePosition> _validator;
 
-        public EmployeePositionController(IUnitOfWork unitOfWork, IValidator validator)
+        public EmployeePositionController(IUnitOfWork unitOfWork, IValidator<EmployeePosition> validator)
         {
             _unitOfWork = unitOfWork;
             _employeePositionRepository = unitOfWork.GetRepository<EmployeePosition>();

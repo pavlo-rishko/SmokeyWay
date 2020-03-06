@@ -33,8 +33,7 @@ namespace SmokeyWay
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddMvc().AddFluentValidation(); 
-
+            services.AddMvc().AddFluentValidation();
             services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
                new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));

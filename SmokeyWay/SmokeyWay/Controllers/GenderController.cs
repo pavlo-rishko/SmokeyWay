@@ -17,9 +17,9 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IValidator _validator;
+        private readonly IValidator<Gender> _validator;
 
-        public GenderController(IUnitOfWork unitOfWork, IValidator validator)
+        public GenderController(IUnitOfWork unitOfWork, IValidator<Gender> validator)
         {
             _unitOfWork = unitOfWork;
             _genderRepository = unitOfWork.GetRepository<Gender>();

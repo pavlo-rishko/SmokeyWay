@@ -17,9 +17,9 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IValidator _validator;
+        private readonly IValidator<OfflineTableReservation> _validator;
 
-        public OfflineTableReservationController(IUnitOfWork unitOfWork, IValidator validator)
+        public OfflineTableReservationController(IUnitOfWork unitOfWork, IValidator<OfflineTableReservation> validator)
         {
             _unitOfWork = unitOfWork;
             _offlineTableReservationRepository = unitOfWork.GetRepository<OfflineTableReservation>();

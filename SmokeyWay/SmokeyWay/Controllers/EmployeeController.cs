@@ -17,9 +17,9 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        private readonly IValidator _validator;
+        private readonly IValidator<Employee> _validator;
 
-        public EmployeeController(IUnitOfWork unitOfWork, IValidator validator)
+        public EmployeeController(IUnitOfWork unitOfWork, IValidator<Employee> validator)
         {
             _unitOfWork = unitOfWork;
             _employeeRepository = unitOfWork.GetRepository<Employee>();
