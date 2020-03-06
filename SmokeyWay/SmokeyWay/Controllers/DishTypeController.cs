@@ -17,9 +17,9 @@ namespace SmokeyWay.Controllers
 
         private readonly IGenericRepository<DishType> _dishTypeRepository;
 
-        private readonly IValidator _validator;
+        private readonly IValidator<DishType> _validator;
 
-        public DishTypeController(IUnitOfWork unitOfWork, IValidator validator)
+        public DishTypeController(IUnitOfWork unitOfWork, IValidator<DishType> validator)
         {
             _unitOfWork = unitOfWork;
             _dishTypeRepository = unitOfWork.GetRepository<DishType>();
