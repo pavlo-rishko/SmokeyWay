@@ -60,8 +60,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(employee)} can't be null");
             }
 
-            var validationResult = _validator.Validate(employee);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(employee).IsValid)
             {
                 throw new ArgumentException($"{nameof(employee)} is not valid");
             }

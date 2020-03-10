@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace SmokeyWay.Controllers
 {
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public OrderController(IUnitOfWork unitOfWork)
+        private readonly IValidator<Order> _validator;
+
+        public OrderController(IUnitOfWork unitOfWork, IValidator<Order> validator)
         {
             _unitOfWork = unitOfWork;
             _orderRepository = unitOfWork.GetRepository<Order>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -56,6 +60,11 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(order)} can't be null");
             }
 
+            if (!_validator.Validate(order).IsValid)
+            {
+                throw new ArgumentException($"{nameof(order)} is not valid");
+            }
+
             try
             {
                 _orderRepository.Add(order);
@@ -74,6 +83,11 @@ namespace SmokeyWay.Controllers
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
+            }
+
+            if (!_validator.Validate(order).IsValid)
+            {
+                throw new ArgumentException($"{nameof(order)} is not valid");
             }
 
             try

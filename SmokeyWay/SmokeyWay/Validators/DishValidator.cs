@@ -7,10 +7,11 @@ namespace SmokeyWay.Validators
     {
         public DishValidator()
         {
-            RuleFor(e => e.Name).Length(1, 45);
+            RuleFor(e => e.Name).Length(1, 45).NotEmpty();
             RuleFor(e => e.Description).Length(1, 1000);
-            RuleFor(e => e.Price).NotEqual(0);
-            RuleFor(e => e.TypeId).NotEqual(0).NotNull();
+            RuleFor(e => e.Price).LessThan(int.MaxValue).NotEmpty().GreaterThan(0);
+            RuleFor(e => e.TypeId).NotEqual(0).NotEmpty();
+            RuleFor(x => x.IsAvailable).NotEmpty();
         }
     }
 }

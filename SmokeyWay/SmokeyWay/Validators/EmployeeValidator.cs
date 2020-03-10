@@ -7,13 +7,13 @@ namespace SmokeyWay.Validators
     {
         public EmployeeValidator()
         {
-            RuleFor(e => e.FirstName).NotNull().Length(1, 45);
-            RuleFor(e => e.LastName).NotNull().Length(1, 45);
-            RuleFor(e => e.DepartamentId).NotEqual(0).NotNull();
-            RuleFor(e => e.PhoneNumber).NotNull().Length(1, 45);
-            RuleFor(e => e.PositionId).NotEqual(0).NotNull();
-            RuleFor(e => e.BirthDate).NotNull();
-            RuleFor(e => e.GenderId).NotEqual(0);
+            RuleFor(e => e.FirstName).NotEmpty().Length(1, 45);
+            RuleFor(e => e.LastName).NotEmpty().Length(1, 45);
+            RuleFor(e => e.DepartamentId).NotEqual(0).NotEmpty();
+            RuleFor(e => e.PhoneNumber).NotEmpty().Length(1, 45);
+            RuleFor(e => e.PositionId).NotEqual(0).NotEmpty();
+            RuleFor(e => e.BirthDate).NotEmpty();
+            RuleFor(e => e.GenderId).NotEqual(0).NotEmpty();
         }
     }
 }

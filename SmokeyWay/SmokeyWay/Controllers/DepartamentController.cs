@@ -60,8 +60,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(departament)} can't be null");
             }
 
-            var validationResult = _validator.Validate(departament);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(departament).IsValid)
             {
                 throw new ArgumentException($"{nameof(departament)} is not valid");
             }
@@ -86,8 +85,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            var validationResult = _validator.Validate(departament);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(departament).IsValid)
             {
                 throw new ArgumentException($"{nameof(departament)} is not valid");
             }

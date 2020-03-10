@@ -60,8 +60,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(dish)} can`t be null");
             }
 
-            var validationResult = _validator.Validate(dish);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(dish).IsValid)
             {
                 throw new ArgumentException($"{nameof(dish)} is not valid");
             }
@@ -87,8 +86,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} can`t be 0");
             }
 
-            var validationResult = _validator.Validate(dishType);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(dishType).IsValid)
             {
                 throw new ArgumentException($"{nameof(dishType)} is not valid");
             }

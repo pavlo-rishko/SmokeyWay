@@ -17,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public GameConsoleController(IUnitOfWork unitOfWork)
+        private readonly IValidator<GameConsole> _validator;
+
+        public GameConsoleController(IUnitOfWork unitOfWork, IValidator<GameConsole> validator)
         {
             _unitOfWork = unitOfWork;
             _gameConsoleRepository = unitOfWork.GetRepository<GameConsole>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -57,6 +60,11 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(gameConsole)} can't be null");
             }
 
+            if (!_validator.Validate(gameConsole).IsValid)
+            {
+                throw new ArgumentException($"{nameof(gameConsole)} is not valid");
+            }
+
             try
             {
                 _gameConsoleRepository.Add(gameConsole);
@@ -75,6 +83,11 @@ namespace SmokeyWay.Controllers
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
+            }
+
+            if (!_validator.Validate(gameConsole).IsValid)
+            {
+                throw new ArgumentException($"{nameof(gameConsole)} is not valid");
             }
 
             try

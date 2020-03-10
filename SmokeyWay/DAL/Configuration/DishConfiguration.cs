@@ -16,7 +16,7 @@ namespace DAL.Configuration
 
             builder.Property(x => x.Name).HasMaxLength(45);
 
-            builder.Property(x => x.Price).HasColumnType("decimal(18,2)");
+            builder.Property(x => x.Price).IsRequired();
 
             builder.Property(x => x.Description).HasMaxLength(1000);
 

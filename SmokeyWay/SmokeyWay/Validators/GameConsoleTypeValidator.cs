@@ -7,7 +7,7 @@ namespace SmokeyWay.Validators
     {
         public GameConsoleTypeValidator()
         {
-            RuleFor(x => x.Name).Length(1, 45);
+            RuleFor(x => x.Name).Length(1, 45).NotEmpty();
         }
     }
 }

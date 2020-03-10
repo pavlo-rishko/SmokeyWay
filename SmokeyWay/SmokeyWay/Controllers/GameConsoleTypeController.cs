@@ -60,8 +60,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(gameConsoleType)} can't be null");
             }
 
-            var validationResult = _validator.Validate(gameConsoleType);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(gameConsoleType).IsValid)
             {
                 throw new ArgumentException($"{nameof(gameConsoleType)} is not valid");
             }
@@ -86,8 +85,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            var validationResult = _validator.Validate(gameConsoleType);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(gameConsoleType).IsValid)
             {
                 throw new ArgumentException($"{nameof(gameConsoleType)} is not valid");
             }

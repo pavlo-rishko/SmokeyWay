@@ -62,8 +62,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(offlineTableReservation)} can't be null");
             }
 
-            var validationResult = _validator.Validate(offlineTableReservation);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(offlineTableReservation).IsValid)
             {
                 throw new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
             }
@@ -88,8 +87,7 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
             }
 
-            var validationResult = _validator.Validate(offlineTableReservation);
-            if (!validationResult.IsValid)
+            if (!_validator.Validate(offlineTableReservation).IsValid)
             {
                 throw new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
             }
