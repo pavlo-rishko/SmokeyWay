@@ -85,7 +85,6 @@ namespace SmokeyWay.Controllers
                     throw new NullReferenceException($"Error while updating order. Order with {nameof(id)}={id} not found");
                 }
 
-                currentOrder.DateTime = order.DateTime;
                 currentOrder.TableId = order.TableId;
                 currentOrder.EmployeeId = order.EmployeeId;
 

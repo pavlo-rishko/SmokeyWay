@@ -37,6 +37,8 @@ namespace SmokeyWay
             services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
                new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
+
+            // Validators.
             services.AddTransient<IValidator<UserRole>, UserRoleValidator>();
             services.AddTransient<IValidator<User>, UserValidator>();
             services.AddTransient<IValidator<Table>, TableValidator>();
@@ -48,6 +50,8 @@ namespace SmokeyWay
             services.AddTransient<IValidator<Dish>, DishValidator>();
             services.AddTransient<IValidator<DishType>, DishTypeValidator>();
             services.AddTransient<IValidator<Departament>, DepartamentValidator>();
+            services.AddTransient<IValidator<GameConsoleType>, GameConsoleTypeValidator>();
+            services.AddTransient<IValidator<OnlineTableReservation>, OnlineTableResrvationValidator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -332,7 +332,6 @@ namespace DataSeeding
                 {
                     context.Orders.Add(new Order()
                     {
-                        DateTime = new DateTime(2002, 03, 26),
                         TableId = 1,
                         EmployeeId = 1,
                         CreateDateTime = DateTime.Now
@@ -340,7 +339,6 @@ namespace DataSeeding
 
                     context.Orders.Add(new Order()
                     {
-                        DateTime = new DateTime(1981, 05, 01),
                         TableId = 2,
                         EmployeeId = 2,
                         CreateDateTime = DateTime.Now

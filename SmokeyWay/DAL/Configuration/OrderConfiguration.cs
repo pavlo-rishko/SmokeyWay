@@ -13,9 +13,7 @@ namespace DAL.Configuration
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).ValueGeneratedOnAdd().IsRequired();
-
-            builder.Property(x => x.DateTime).IsRequired();
-
+            
             builder.Property(x => x.TableId);
 
             builder.Property(x => x.EmployeeId);

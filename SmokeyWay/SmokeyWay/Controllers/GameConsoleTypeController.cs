@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace SmokeyWay.Controllers
 {
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public GameConsoleTypeController(IUnitOfWork unitOfWork)
+        private readonly IValidator<GameConsoleType> _validator;
+
+        public GameConsoleTypeController(IUnitOfWork unitOfWork, IValidator<GameConsoleType> validator)
         {
             _unitOfWork = unitOfWork;
             _gameConsoleTypeRepository = unitOfWork.GetRepository<GameConsoleType>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -56,6 +60,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(gameConsoleType)} can't be null");
             }
 
+            var validationResult = _validator.Validate(gameConsoleType);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(gameConsoleType)} is not valid");
+            }
+
             try
             {
                 _gameConsoleTypeRepository.Add(gameConsoleType);
@@ -74,6 +84,12 @@ namespace SmokeyWay.Controllers
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
+            }
+
+            var validationResult = _validator.Validate(gameConsoleType);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(gameConsoleType)} is not valid");
             }
 
             try

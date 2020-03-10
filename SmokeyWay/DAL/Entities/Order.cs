@@ -5,8 +5,6 @@ namespace DAL.Entities
 {
     public class Order : BaseEntity
     {
-        public DateTime DateTime { get; set; }
-
         public int TableId { get; set; }
 
         public Table Table { get; set; }

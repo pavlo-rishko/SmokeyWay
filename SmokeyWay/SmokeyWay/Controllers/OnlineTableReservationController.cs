@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace SmokeyWay.Controllers
 {
@@ -16,10 +17,13 @@ namespace SmokeyWay.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public OnlineTableReservationController(IUnitOfWork unitOfWork)
+        private readonly IValidator<OnlineTableReservation> _validator;
+
+        public OnlineTableReservationController(IUnitOfWork unitOfWork, IValidator<OnlineTableReservation> validator)
         {
             _unitOfWork = unitOfWork;
             _onlineTableReservationRepository = unitOfWork.GetRepository<OnlineTableReservation>();
+            _validator = validator;
         }
 
         [HttpGet]
@@ -56,6 +60,12 @@ namespace SmokeyWay.Controllers
                 throw new ArgumentException($"{nameof(onlineTableReservation)} can't be null");
             }
 
+            var validationResult = _validator.Validate(onlineTableReservation);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(onlineTableReservation)} is not valid");
+            }
+
             try
             {
                 _onlineTableReservationRepository.Add(onlineTableReservation);
@@ -74,6 +84,12 @@ namespace SmokeyWay.Controllers
             if (id == default)
             {
                 throw new ArgumentException($"{nameof(id)} cannot be 0");
+            }
+
+            var validationResult = _validator.Validate(onlineTableReservation);
+            if (!validationResult.IsValid)
+            {
+                throw new ArgumentException($"{nameof(onlineTableReservation)} is not valid");
             }
 
             try

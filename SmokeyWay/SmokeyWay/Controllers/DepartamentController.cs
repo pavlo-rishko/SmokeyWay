@@ -19,7 +19,7 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator _validator;
 
-        public DepartamentController(IUnitOfWork unitOfWork, IValidator validator)
+        public DepartamentController(IUnitOfWork unitOfWork, IValidator<Departament> validator)
         {
             _unitOfWork = unitOfWork;
             _departamentRepository = unitOfWork.GetRepository<Departament>();
