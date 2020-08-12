@@ -25,5 +25,7 @@ jobs:
       working-directory: SmokeyWay/SmokeyWay
     - name: Build
       run: dotnet build --configuration Release --no-restore
+      working-directory: SmokeyWay/SmokeyWay
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+      working-directory: SmokeyWay/SmokeyWay
