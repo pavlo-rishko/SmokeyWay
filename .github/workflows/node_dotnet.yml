@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: 14.x
     - name: Install node_modules
-      run: npm ci
+      run: npm i
       working-directory: SmokeyWay/SmokeyWay/ClientApp/
     - name: Run ESLint
       run: npm run lint
