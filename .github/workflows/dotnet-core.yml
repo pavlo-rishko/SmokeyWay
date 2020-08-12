@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Open project folder
-      run:  cd SmokeyWay/SmokeyWay/ 
+      run:  cd SmokeyWay
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
