@@ -1,6 +1,13 @@
-import React, {MouseEvent} from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import Logo from '../../public/SmokeyWayLogo.svg' 
+
+const StyledLogo = styled.img`
+  height: 80px;
+  padding-left: 0;
+  float: left;
+`;
 
 const StyledLink = styled.div`
   padding: 20px;
@@ -26,26 +33,19 @@ const StyledLink = styled.div`
 `;
 
 const StyledNav = styled.div`
-background-color: black;
+  width: 100%;
+  background-color: silver;
 `;
-
-function bigImg(e: MouseEvent) {
-    if(e.type === "mouseenter"){
-        console.log(e.type)
-    }
-    if(e.type === "mouseleave"){
-        console.log(e.type)
-    }
-  }
   
 function Header(){
     return(
-        <header>
+        <header>            
             <StyledNav>
+                <StyledLogo src={Logo}></StyledLogo>
                 <StyledLink>
                     <Link to="./">Smokey Way</Link>
                 </StyledLink>
-                <StyledLink onMouseEnter={bigImg} onMouseLeave={bigImg}>
+                <StyledLink>
                     <Link to="./">Головна</Link>
                 </StyledLink>
                 <StyledLink>
