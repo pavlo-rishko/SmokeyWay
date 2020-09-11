@@ -34,7 +34,7 @@ namespace SmokeyWay
             });
 
             services.AddMvc().AddFluentValidation();
-            services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SmokeyWayDbContext>(item => item.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
                new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
 
