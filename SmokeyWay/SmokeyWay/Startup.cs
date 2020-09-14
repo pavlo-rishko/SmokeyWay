@@ -34,9 +34,11 @@ namespace SmokeyWay
             });
 
             services.AddMvc().AddFluentValidation();
-            services.AddDbContext<SmokeyWayDbContext>(item => item.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SmokeyWayDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUnitOfWork, UnitOfWork>(provider =>
                new UnitOfWork(provider.GetRequiredService<SmokeyWayDbContext>()));
+
+            services.AddSwaggerGen();
 
             // Validators.
             services.AddTransient<IValidator<UserRole>, UserRoleValidator>();
@@ -72,6 +74,12 @@ namespace SmokeyWay
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 

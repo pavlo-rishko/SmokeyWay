@@ -3,6 +3,7 @@ using System;
 using DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
@@ -15,39 +16,41 @@ namespace DAL.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DAL.Entities.Departament", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<string>("Country")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("HouseNumber")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<string>("Street")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -58,20 +61,21 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("varchar(1000)")
+                        .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<int>("Price")
@@ -81,7 +85,7 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -94,22 +98,24 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
 
                     b.ToTable("DishType");
                 });
@@ -118,20 +124,21 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("DepartamentId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<int>("GenderId")
@@ -139,18 +146,18 @@ namespace DAL.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<int>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -167,21 +174,22 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("varchar(8000)")
+                        .HasColumnType("nvarchar(max)")
                         .HasMaxLength(8000);
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -192,27 +200,28 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .HasColumnType("varchar(8000)")
+                        .HasColumnType("nvarchar(max)")
                         .HasMaxLength(8000);
 
                     b.Property<DateTime>("LicenseBeginDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LicenseEndDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -223,16 +232,17 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("GameConsoleTypeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -260,17 +270,18 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -281,21 +292,22 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Descriprion")
-                        .HasColumnType("varchar(1000)")
+                        .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -306,30 +318,31 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClientName")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<string>("ClientPhoneNumber")
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ReservationDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("TableId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -344,19 +357,20 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ReservationDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("TableId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -374,10 +388,11 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -386,7 +401,7 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -416,10 +431,11 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("DepartamentId")
                         .HasColumnType("int");
@@ -429,14 +445,14 @@ namespace DAL.Migrations
 
                     b.Property<string>("Identifier")
                         .IsRequired()
-                        .HasColumnType("varchar(45)")
+                        .HasColumnType("nvarchar(45)")
                         .HasMaxLength(45);
 
                     b.Property<int>("SeatingCapacity")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -452,21 +468,22 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CommunicationLanguage")
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<bool>("EmailConfirmed")
@@ -476,15 +493,15 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("varchar(12)")
+                        .HasColumnType("nvarchar(12)")
                         .HasMaxLength(12);
 
                     b.Property<bool>("PhoneNumberConfirmed")
@@ -494,7 +511,7 @@ namespace DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -509,17 +526,18 @@ namespace DAL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<DateTime?>("UpdateDateTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

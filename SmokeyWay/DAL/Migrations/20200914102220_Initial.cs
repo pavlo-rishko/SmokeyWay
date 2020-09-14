@@ -1,10 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace DAL.Migrations
 {
-    public partial class MySql : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +12,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 45, nullable: true),
@@ -32,7 +31,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 45, nullable: true)
@@ -47,7 +46,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 45, nullable: true),
@@ -63,7 +62,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 45, nullable: true),
@@ -81,7 +80,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 45, nullable: true)
@@ -96,7 +95,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 100, nullable: true),
@@ -112,7 +111,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: true)
@@ -127,7 +126,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 45, nullable: true),
@@ -152,7 +151,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     GameConsoleTypeId = table.Column<int>(nullable: false)
@@ -173,7 +172,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     FirstName = table.Column<string>(maxLength: 45, nullable: false),
@@ -212,7 +211,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 50, nullable: true),
@@ -272,7 +271,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     Identifier = table.Column<string>(maxLength: 45, nullable: false),
@@ -302,7 +301,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     TableId = table.Column<int>(nullable: false),
@@ -333,7 +332,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     TableId = table.Column<int>(nullable: false),
@@ -362,7 +361,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreateDateTime = table.Column<DateTime>(nullable: false),
                     UpdateDateTime = table.Column<DateTime>(nullable: true),
                     TableId = table.Column<int>(nullable: false),
@@ -418,7 +417,8 @@ namespace DAL.Migrations
                 name: "IX_DishType_Name",
                 table: "DishType",
                 column: "Name",
-                unique: true);
+                unique: true,
+                filter: "[Name] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_DepartamentId",
