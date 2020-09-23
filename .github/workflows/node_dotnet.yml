@@ -48,8 +48,8 @@ jobs:
       uses: airvzxf/ftp-deployment-action@v1.0-alpha.2
       with:
         # FTP Server
-        server: ${{FTP_ADDRESS}}
+        server: ${{secrets.FTP_ADDRESS}}
         # FTP User
-        user: ${{FTP_USERNAME}}
+        user: ${{secrets.FTP_USERNAME}}
         # FTP Password
-        password: ${{FTP_PASSWORD}}
+        password: ${{secrets.FTP_PASSWORD}}
