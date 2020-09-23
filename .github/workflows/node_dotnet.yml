@@ -56,7 +56,7 @@ jobs:
         # Delete all the files inside of the remote directory
         delete: true
         # Local directory
-        local_dir: SmokeyWay/SmokeyWay/bin/Release/netcoreapp3.1/
+        local_dir: SmokeyWay/SmokeyWay/bin/Release/netcoreapp3.1
         # Remote directory
         remote_dir: site1
     - name: FTP Deployment React
@@ -73,6 +73,6 @@ jobs:
         # Delete all the files inside of the remote directory
         delete: true
         # Local directory
-        local_dir: SmokeyWay/SmokeyWay/ClientApp/build/
+        local_dir: SmokeyWay/SmokeyWay/ClientApp/build
         # Remote directory
         remote_dir: site1/ClientApp
