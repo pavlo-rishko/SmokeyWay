@@ -43,7 +43,8 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       working-directory: SmokeyWay/SmokeyWay
     - name: dotnet publish
-      run: dotnet publish -c Release -o myapp 
+      run: dotnet publish -c Release -o myapp
+      working-directory: SmokeyWay/SmokeyWay
     - name: FTP Deployment
       # You may pin to the exact commit or the version.
       # uses: airvzxf/ftp-deployment-action@c4699e3438a88a8a9d00c1311b98d2ca94f32754
