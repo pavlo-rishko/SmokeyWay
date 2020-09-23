@@ -57,7 +57,7 @@ jobs:
         # FTP Password
         password: ${{secrets.FTP_PASSWORD}}
         # Delete all the files inside of the remote directory
-        delete: true
+        delete: false
         # Local directory
         local_dir: SmokeyWay/SmokeyWay/myapp
         # Remote directory
