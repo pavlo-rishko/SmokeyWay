@@ -53,3 +53,5 @@ jobs:
         user: ${{secrets.FTP_USERNAME}}
         # FTP Password
         password: ${{secrets.FTP_PASSWORD}}
+        # Remote directory
+        remote_dir: /site1
