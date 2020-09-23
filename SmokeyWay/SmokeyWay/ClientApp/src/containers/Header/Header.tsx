@@ -32,12 +32,12 @@ const StyledLink = styled.div`
 `;
 
 const StyledNav = styled.div`
+  position: fixed;
   width: 100%;
   background-color: silver;
 `;
   
 function Header(){
-
     return(
         <header>
             <StyledNav>
