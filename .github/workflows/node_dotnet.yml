@@ -42,7 +42,9 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       working-directory: SmokeyWay/SmokeyWay
-    - name: FTP Deployment .Net Core
+    - name: dotnet publish
+      run: dotnet publish -c Release -o myapp 
+    - name: FTP Deployment
       # You may pin to the exact commit or the version.
       # uses: airvzxf/ftp-deployment-action@c4699e3438a88a8a9d00c1311b98d2ca94f32754
       uses: airvzxf/ftp-deployment-action@v1.0-alpha.2
@@ -56,23 +58,6 @@ jobs:
         # Delete all the files inside of the remote directory
         delete: true
         # Local directory
-        local_dir: SmokeyWay/SmokeyWay/bin/Release/netcoreapp3.1
+        local_dir: ./myapp
         # Remote directory
         remote_dir: site1
-    - name: FTP Deployment React
-      # You may pin to the exact commit or the version.
-      # uses: airvzxf/ftp-deployment-action@c4699e3438a88a8a9d00c1311b98d2ca94f32754
-      uses: airvzxf/ftp-deployment-action@v1.0-alpha.2
-      with:
-        # FTP Server
-        server: ${{secrets.FTP_ADDRESS}}
-        # FTP User
-        user: ${{secrets.FTP_USERNAME}}
-        # FTP Password
-        password: ${{secrets.FTP_PASSWORD}}
-        # Delete all the files inside of the remote directory
-        delete: true
-        # Local directory
-        local_dir: SmokeyWay/SmokeyWay/ClientApp/build
-        # Remote directory
-        remote_dir: site1/ClientApp
