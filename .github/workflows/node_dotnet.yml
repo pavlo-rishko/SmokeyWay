@@ -56,6 +56,6 @@ jobs:
         # Delete all the files inside of the remote directory
         delete: true
         # Local directory
-        local_dir: /home/runner/work/SmokeyWay/SmokeyWay/SmokeyWay/SmokeyWay/bin/Release/netcoreapp3.1/
+        local_dir: SmokeyWay/SmokeyWay/bin/Release/netcoreapp3.1/
         # Remote directory
         remote_dir: site1
