@@ -5,11 +5,12 @@ import { BrowserRouter } from "react-router-dom";
 import BackgroundMusicPlayer from "./components/BackgroundMusicPlayer";
 
 function App() {
+  const backgroungSong = require("./public/offyou.mp3");
   return (
     <BrowserRouter>
         <div className="App">
           <Header></Header>
-          <BackgroundMusicPlayer uniqueId="offyou.mp3" songPath="../public/offyou.mp3"></BackgroundMusicPlayer>
+          <BackgroundMusicPlayer uniqueId="offyou.mp3" songPath={backgroungSong}/>
         </div>
     </BrowserRouter>
   );
