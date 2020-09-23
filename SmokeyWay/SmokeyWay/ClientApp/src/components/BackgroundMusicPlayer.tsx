@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const StyledIframe = styled.iframe`display: none;`;
