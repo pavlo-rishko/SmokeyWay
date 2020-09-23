@@ -42,5 +42,14 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       working-directory: SmokeyWay/SmokeyWay
-
-
+    - name: FTP Deployment
+      # You may pin to the exact commit or the version.
+      # uses: airvzxf/ftp-deployment-action@c4699e3438a88a8a9d00c1311b98d2ca94f32754
+      uses: airvzxf/ftp-deployment-action@v1.0-alpha.2
+      with:
+        # FTP Server
+        server: ${{FTP_ADDRESS}}
+        # FTP User
+        user: ${{FTP_USERNAME}}
+        # FTP Password
+        password: ${{FTP_PASSWORD}}
