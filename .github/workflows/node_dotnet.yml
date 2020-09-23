@@ -54,4 +54,4 @@ jobs:
         # FTP Password
         password: ${{secrets.FTP_PASSWORD}}
         # Remote directory
-        remote_dir: /site1
+        remote_dir: site1
