@@ -53,5 +53,9 @@ jobs:
         user: ${{secrets.FTP_USERNAME}}
         # FTP Password
         password: ${{secrets.FTP_PASSWORD}}
+        # Delete all the files inside of the remote directory
+        delete: true
+        # Local directory
+        local_dir: /home/runner/work/SmokeyWay/SmokeyWay/SmokeyWay/SmokeyWay/bin/Release/netcoreapp3.1/
         # Remote directory
         remote_dir: site1
