@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import Logo from '../../public/SmokeyWayLogo.svg' 
-
+import Logo from '../../public/SmokeyWayLogo.svg';
 const StyledLogo = styled.img`
   height: 80px;
   padding-left: 0;
@@ -33,13 +32,14 @@ const StyledLink = styled.div`
 `;
 
 const StyledNav = styled.div`
+  position: fixed;
   width: 100%;
   background-color: silver;
 `;
   
 function Header(){
     return(
-        <header>            
+        <header>
             <StyledNav>
                 <StyledLogo src={Logo}></StyledLogo>
                 <StyledLink>
