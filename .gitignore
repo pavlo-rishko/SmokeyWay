@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 /SmokeyWay_UML.mwb.bak
 *.StyleCop
+/SmokeyWay/.idea/.idea.SmokeyWay/.idea
+/SmokeyWay/.idea/.idea.SmokeyWay
