@@ -12,7 +12,7 @@ const StyledLink = styled.div`
   padding: 20px;
   margin: 10px;
   border-radius: 40px;
-  background-color: red;
+  background-color: #B63D3D;
   display: inline-block;
   box-shadow: 0px 0px 15px 2px #000000;
   &:hover {
