@@ -1,54 +1,51 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import ScrollHandler from "../../components/ScrollHandler";
 import Logo from '../../public/SmokeyWayLogo.svg';
-const StyledLogo = styled.img`
+
+const StyledLogo = styled("img")<{isScrolled: boolean}>`
+  filter: ${props => props.isScrolled ? "invert(1)" : "drop-shadow(2px 4px 3px black)"};
   height: 80px;
   padding-left: 0;
   float: left;
 `;
 
-const StyledLink = styled.div`
+const StyledLink = styled("div")<{isScrolled: boolean}>`
   padding: 20px;
   margin: 10px;
-  border-radius: 40px;
-  background-color: #B63D3D;
   display: inline-block;
-  box-shadow: 0px 0px 15px 2px #000000;
+  border-radius: 5px;
   &:hover {
-    box-shadow: 5px 5px 15px 5px #FF8080,
-    -9px 5px 15px 5px #FFE488, 
-    -7px -5px 15px 5px #8CFF85, 
-    12px -5px 15px 5px #80C7FF, 
-    12px 10px 15px 7px #E488FF, 
-    -10px 10px 15px 7px #FF616B, 
-    -10px -7px 27px 1px #8E5CFF, 
-    0px 0px 15px 2px rgba(0,0,0,0);
+    box-shadow: 0px 0px 15px 2px  ${props => props.isScrolled ? "white" : "black"};
+    color: black;
   }
   a {
     text-decoration: inherit;
-    color: white;
+    color: ${props => props.isScrolled ? "white" : "black"};
   }
 `;
 
-const StyledNav = styled.div`
+const StyledNav = styled("div")<{isScrolled: boolean}>`
   position: fixed;
   width: 100%;
-  background-color: silver;
+  background-color: ${props => props.isScrolled ? "transparent " : "white"};
 `;
   
 function Header(){
+  const _isScrolled = ScrollHandler();
+
     return(
-        <header>
-            <StyledNav>
-                <StyledLogo src={Logo}></StyledLogo>
-                <StyledLink>
+        <header style={{overflowAnchor: "initial"}}>
+            <StyledNav isScrolled={_isScrolled}>
+                <StyledLogo isScrolled={_isScrolled} src={Logo}></StyledLogo>
+                <StyledLink isScrolled={_isScrolled}>
                     <Link to="./">Smokey Way</Link>
                 </StyledLink>
-                <StyledLink>
+                <StyledLink isScrolled={_isScrolled}>
                     <Link to="./">Головна</Link>
                 </StyledLink>
-                <StyledLink>
+                <StyledLink isScrolled={_isScrolled}>
                     <Link to="./">Меню</Link>
                 </StyledLink>
             </StyledNav>

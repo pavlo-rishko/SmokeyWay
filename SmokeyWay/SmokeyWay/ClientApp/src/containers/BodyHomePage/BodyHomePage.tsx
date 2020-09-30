@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "./BodyHomePage.css";
 
 const StyledDivBLock = styled.div`
 width: 100vw;
@@ -17,8 +18,8 @@ function BodyHomePage()
         <div style={{position: "absolute", top: "1px", zIndex: -1}}>
             <StyledDivBLock>
                 <video src={backgroundSmokeVideo} autoPlay muted loop style={{left: 0, right: 0, position: "absolute", objectFit: "cover", objectPosition: "center"}}/>
-                <div style={{fontSize: "10vw",height:"inherit", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <h1  style={{mixBlendMode: "overlay", color: "#fff"}}>
+                <div style={{height:"inherit", display: "flex", justifyContent: "center", alignItems: "center"}}>                    
+                    <h1 style={{fontFamily:"PermanentMarker-Regular", fontSize: "10vw", mixBlendMode: "overlay", color: "#fff"}}>
                         Smokey Way
                     </h1>
                 </div>
