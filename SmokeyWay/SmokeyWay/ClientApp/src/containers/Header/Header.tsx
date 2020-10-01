@@ -36,7 +36,7 @@ function Header(){
   const _isScrolled = ScrollHandler();
 
     return(
-        <header style={{overflowAnchor: "initial"}}>
+        <header>
             <StyledNav isScrolled={_isScrolled}>
                 <StyledLogo isScrolled={_isScrolled} src={Logo}></StyledLogo>
                 <StyledLink isScrolled={_isScrolled}>

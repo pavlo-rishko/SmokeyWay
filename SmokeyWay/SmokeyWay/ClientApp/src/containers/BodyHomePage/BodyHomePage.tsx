@@ -4,16 +4,16 @@ import ScrollHandler from "../../components/ScrollHandler";
 import "./BodyHomePage.css";
 
 const StyledDiv = styled.div`
-width: 100vw;
-height: 100vh;
-min-width: 100vw;
-min-height: 100vh;
-visibility: visible;
+    width: 100vw;
+    height: 110vh;
+    min-width: 100vw;
+    min-height: 100vh;
 `;
 
 const StyledVideo = styled.video`
-    min-height: 110vh;
+    min-height: 120vh;
     max-width: 100%;
+    width: 100%;
     left: 0px;
     right: 0px;
     position: absolute;
@@ -21,7 +21,7 @@ const StyledVideo = styled.video`
     object-position: center center;
 `;
 const StyledFlexVideoContainer = styled("div")<{isScrolled: boolean}>`
-    height: 110vh;
+    height: 120vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ function BodyHomePage()
 
     return(
         <div style={{position: "absolute", top: "1px", zIndex: -1}}>
-            <StyledDiv>
+            <StyledDiv style={{height: "120vh"}}>
                 <StyledVideo src={backgroundSmokeVideo} autoPlay muted loop />
                 <StyledFlexVideoContainer isScrolled={_isScrolled}>                    
                     <h1 style={{fontFamily:"PermanentMarker-Regular", fontSize: "12vw", mixBlendMode: "overlay", color: "#fff"}}>
