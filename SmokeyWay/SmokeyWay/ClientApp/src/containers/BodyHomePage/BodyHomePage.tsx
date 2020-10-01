@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import ScrollHandler from "../../components/ScrollHandler";
 import "./BodyHomePage.css";
 
-const StyledDivBLock = styled.div`
+const StyledDiv = styled.div`
 width: 100vw;
 height: 100vh;
 min-width: 100vw;
@@ -10,22 +11,41 @@ min-height: 100vh;
 visibility: visible;
 `;
 
+const StyledVideo = styled.video`
+    min-height: 110vh;
+    max-width: 100%;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    object-fit: cover;
+    object-position: center center;
+`;
+const StyledFlexVideoContainer = styled("div")<{isScrolled: boolean}>`
+    height: 110vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: ${props => props.isScrolled ? "8vh" : "initial"};
+`;
+
 const backgroundSmokeVideo = require("../../public/smokeBackground.webm");
 
 function BodyHomePage()
 {
+    const _isScrolled = ScrollHandler();
+
     return(
         <div style={{position: "absolute", top: "1px", zIndex: -1}}>
-            <StyledDivBLock>
-                <video src={backgroundSmokeVideo} autoPlay muted loop style={{left: 0, right: 0, position: "absolute", objectFit: "cover", objectPosition: "center"}}/>
-                <div style={{height:"inherit", display: "flex", justifyContent: "center", alignItems: "center"}}>                    
-                    <h1 style={{fontFamily:"PermanentMarker-Regular", fontSize: "10vw", mixBlendMode: "overlay", color: "#fff"}}>
+            <StyledDiv>
+                <StyledVideo src={backgroundSmokeVideo} autoPlay muted loop />
+                <StyledFlexVideoContainer isScrolled={_isScrolled}>                    
+                    <h1 style={{fontFamily:"PermanentMarker-Regular", fontSize: "12vw", mixBlendMode: "overlay", color: "#fff"}}>
                         Smokey Way
                     </h1>
-                </div>
-            </StyledDivBLock>
-            <StyledDivBLock style={{backgroundColor: "black"}}>lol2</StyledDivBLock>
-            <StyledDivBLock style={{backgroundColor: "pink"}}>lol</StyledDivBLock>
+                </StyledFlexVideoContainer>
+            </StyledDiv>
+            <StyledDiv style={{backgroundColor: "black"}}>lol2</StyledDiv>
+            <StyledDiv style={{backgroundColor: "pink"}}>lol</StyledDiv>
         </div>
     )
 }
