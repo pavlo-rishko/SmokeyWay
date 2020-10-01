@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ScrollHandler from "../../components/ScrollHandler";
+import SectionWipes from "../../components/SectionWipesComponent/SectionWipes";
 import "./BodyHomePage.css";
 
 const StyledDiv = styled.div`
@@ -33,7 +34,7 @@ const backgroundSmokeVideo = require("../../public/smokeBackground.webm");
 function BodyHomePage()
 {
     const _isScrolled = ScrollHandler();
-
+    
     return(
         <div style={{position: "absolute", top: "1px", zIndex: -1}}>
             <StyledDiv style={{height: "120vh"}}>
@@ -44,7 +45,10 @@ function BodyHomePage()
                     </h1>
                 </StyledFlexVideoContainer>
             </StyledDiv>
-            <StyledDiv style={{backgroundColor: "black"}}>lol2</StyledDiv>
+            <SectionWipes/>
+            <StyledDiv style={{backgroundColor: "black"}}>
+
+            </StyledDiv>
             <StyledDiv style={{backgroundColor: "pink"}}>lol</StyledDiv>
         </div>
     )
