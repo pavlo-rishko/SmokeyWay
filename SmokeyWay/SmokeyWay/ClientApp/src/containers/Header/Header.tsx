@@ -29,7 +29,7 @@ const StyledLink = styled("div")<{isScrolled: boolean}>`
 const StyledNav = styled("div")<{isScrolled: boolean}>`
   position: fixed;
   width: 100%;
-  background-color: ${props => props.isScrolled ? "transparent " : "white"};
+  background-color: ${props => props.isScrolled ? "transparent " : "rgb(255,255,254)"};
 `;
   
 function Header(){
