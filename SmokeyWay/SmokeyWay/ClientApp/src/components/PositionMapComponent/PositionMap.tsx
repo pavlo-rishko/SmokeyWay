@@ -23,7 +23,8 @@ function PositionMap(props: PositionMapProps)
 
     const L = require("leaflet");
     
-    React.useEffect(() => {    
+    React.useEffect(() => {   
+        const L = require("leaflet"); 
         delete L.Icon.Default.prototype._getIconUrl;
             
         L.Icon.Default.mergeOptions({
