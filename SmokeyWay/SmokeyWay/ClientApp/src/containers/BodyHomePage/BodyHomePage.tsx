@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ScrollHandler from "../../components/ScrollHandler";
 import SectionWipes from "../../components/SectionWipesComponent/SectionWipes";
 import "./BodyHomePage.css";
+import PositionMap from "../../components/PositionMapComponent/PositionMap";
 
 const StyledDiv = styled.div`
     width: 100vw;
@@ -47,9 +48,16 @@ function BodyHomePage()
             </StyledDiv>
             <SectionWipes/>
             <StyledDiv style={{backgroundColor: "black"}}>
-
             </StyledDiv>
-            <StyledDiv style={{backgroundColor: "pink"}}>lol</StyledDiv>
+            <StyledDiv style={{backgroundColor: "pink", padding: "30px"}}>
+                <h3>Як нас знайти</h3>
+                <div style={{height: "100vh", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                    <div style={{position:"relative", right:"4vw", bottom: "5vh"}}>
+                        <PositionMap zoom={18} />
+                    </div>
+                </div>                       
+                
+            </StyledDiv>
         </div>
     )
 }
