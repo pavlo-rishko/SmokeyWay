@@ -46,19 +46,8 @@ function Header(){
                     <Link to="./">Галерея</Link>
                 </StyledLink>
                 <StyledLink isScrolled={_isScrolled}>
-                    <Link to="./">Зробити замовлення</Link>
-                </StyledLink>
-                <StyledLink isScrolled={_isScrolled}>
                     <Link to="./">Контакти</Link>
-                </StyledLink>
-                <div style={{position: "absolute", right: "2vw", display: "inline-block"}}>
-                  <StyledLink isScrolled={_isScrolled}>
-                      <Link to="./">Реєстрація</Link>
-                  </StyledLink>
-                  <StyledLink isScrolled={_isScrolled}>
-                      <Link to="./">Вхід</Link>
-                  </StyledLink>
-                </div>
+                </StyledLink>                
             </StyledNav>
         </header>
     )
