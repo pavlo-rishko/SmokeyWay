@@ -16,9 +16,6 @@ const StyledLink = styled("div")<{isScrolled: boolean}>`
   margin: 10px;
   display: inline-block;
   border-radius: 5px;
-  @media (max-width: 1000px) {
-    display: none;
-  }
   &:hover {
     box-shadow: 0px 0px 15px 2px  ${props => props.isScrolled ? "white" : "black"};
     color: black;
@@ -26,6 +23,9 @@ const StyledLink = styled("div")<{isScrolled: boolean}>`
   a {
     text-decoration: inherit;
     color: ${props => props.isScrolled ? "white" : "black"};
+    @media (max-width: 1000px) {
+     color: black;
+    }
   }
 `;
 
@@ -34,23 +34,37 @@ const StyledNav = styled("div")<{isScrolled: boolean}>`
   width: 100%;
   background-color: ${props => props.isScrolled ? "transparent " : "white"};
 `;
-  
+
+const StyledButtonsBlockDiv = styled.div`
+  @media (max-width: 1000px) {
+    top: -1vh;
+    width: 200px;
+    border-radius: 0px 0px 0px 20px;
+    position: absolute;
+    background-color: white;
+    right: 0;
+    display: grid;
+  }
+`;
+
 function Header(){
   const _isScrolled = ScrollHandler();
 
     return(
-        <header>
+        <header style={{position: "relative", top: _isScrolled? "1vh" : ""}}>
             <StyledNav isScrolled={_isScrolled}>
-                <StyledLogo isScrolled={_isScrolled} src={Logo}></StyledLogo>
-                <StyledLink isScrolled={_isScrolled}>
-                    <Link to="./">Smokey Way</Link>
-                </StyledLink>
-                <StyledLink isScrolled={_isScrolled}>
-                    <Link to="./">Галерея</Link>
-                </StyledLink>
-                <StyledLink isScrolled={_isScrolled}>
-                    <Link to="./">Контакти</Link>
-                </StyledLink>                
+                <StyledLogo isScrolled={_isScrolled} src={Logo}/>
+                <StyledButtonsBlockDiv>
+                  <StyledLink isScrolled={_isScrolled}>
+                      <Link to="./">Smokey Way</Link>
+                  </StyledLink>
+                  <StyledLink isScrolled={_isScrolled}>
+                      <Link to="./">Галерея</Link>
+                  </StyledLink>
+                  <StyledLink isScrolled={_isScrolled}>
+                      <Link to="./">Контакти</Link>
+                  </StyledLink>  
+                </StyledButtonsBlockDiv>             
             </StyledNav>
         </header>
     )
