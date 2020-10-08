@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
+import styled from 'styled-components';
 
 interface PositionMapProps { 
     position?: L.LatLngLiteral; 
@@ -10,6 +11,26 @@ interface PositionMapProps {
     zoom?: number;
     borderRadius?: string;
 }
+
+interface StyledLeafletMapProps {
+    height: string;
+    width: string;
+    borderRadius: string;
+    zoom: number;
+    center: L.LatLngLiteral;
+    scrollWheelZoom: boolean;
+}
+
+const StyledLeafletMap = styled(LeafletMap)<StyledLeafletMapProps>`
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+    height: ${props => props.height};
+    width: ${props => props.width};
+    min-width: 200px;
+    border-radius: ${props => props.borderRadius};
+    @media (max-width: 800px) {
+        width: 80vw;
+    }
+`;
 
 function PositionMap(props: PositionMapProps)
 {
@@ -35,16 +56,13 @@ function PositionMap(props: PositionMapProps)
       }, []);
 
     return(
-        <LeafletMap        
-        center={position} 
-        zoom={zoom}
-        scrollWheelZoom={false}
-        style={{
-            boxShadow: "0px 0px 9px 0px rgba(0,0,0,0.75)",
-            height: height, 
-            width: width, 
-            borderRadius: borderRadius
-            }}>
+        <StyledLeafletMap
+            borderRadius={borderRadius}
+            width={width}
+            height={height}
+            center={position}
+            zoom={zoom}
+            scrollWheelZoom={false}>
             <TileLayer maxZoom={22}
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
             url='https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=L7jWH8UlPu3enKseP3Nw'
@@ -54,7 +72,7 @@ function PositionMap(props: PositionMapProps)
                     {popUpText}
                 </Popup>
             </Marker>
-        </LeafletMap>
+        </StyledLeafletMap>
     );
 }
 export default PositionMap;

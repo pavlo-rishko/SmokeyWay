@@ -30,6 +30,19 @@ const StyledFlexVideoContainer = styled("div")<{isScrolled: boolean}>`
     padding-top: ${props => props.isScrolled ? "8vh" : "initial"};
 `;
 
+const PositionMapWrapDiv = styled.div`
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 6vw;
+    padding-bottom: 4vh;
+    align-items: center;
+    @media (max-width: 800px) {
+        justify-content: center;
+        padding-right: 0;
+    }
+`;
+
 const backgroundSmokeVideo = require("../../public/smokeBackground.webm");
 
 function BodyHomePage()
@@ -50,11 +63,9 @@ function BodyHomePage()
             <StyledDiv style={{backgroundColor: "black"}}>
             </StyledDiv>
             <StyledDiv  style={{backgroundColor: "pink"}}>                
-                <div style={{height: "100vh", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
-                    <div style={{position:"relative", right:"4vw", bottom: "5vh"}}>
+                <PositionMapWrapDiv>
                         <PositionMap zoom={18}/>
-                    </div>
-                </div>
+                </PositionMapWrapDiv>
             </StyledDiv>
         </div>
     )
