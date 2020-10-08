@@ -14,7 +14,7 @@ const StyledDiv = styled.div`
 
 const StyledVideo = styled.video`
     min-height: 120vh;
-    max-width: 100%;
+    max-width: 100vw;
     width: 100%;
     left: 0px;
     right: 0px;
@@ -49,14 +49,12 @@ function BodyHomePage()
             <SectionWipes/>
             <StyledDiv style={{backgroundColor: "black"}}>
             </StyledDiv>
-            <StyledDiv style={{backgroundColor: "pink", padding: "30px"}}>
-                <h3>Як нас знайти</h3>
+            <StyledDiv  style={{backgroundColor: "pink"}}>                
                 <div style={{height: "100vh", display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                     <div style={{position:"relative", right:"4vw", bottom: "5vh"}}>
-                        <PositionMap zoom={18} />
+                        <PositionMap zoom={18}/>
                     </div>
-                </div>                       
-                
+                </div>
             </StyledDiv>
         </div>
     )

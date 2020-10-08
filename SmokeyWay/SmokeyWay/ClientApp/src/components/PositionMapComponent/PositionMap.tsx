@@ -15,8 +15,8 @@ function PositionMap(props: PositionMapProps)
 {
     const {position = [49.84454, 24.026750] as unknown as L.LatLngLiteral,
         popUpText = "",
-        height = "500px",
-        width = "700px",
+        height = "35vh",
+        width = "30vw",
         zoom = 10,
         borderRadius = "30px"
     } = props;
@@ -35,7 +35,16 @@ function PositionMap(props: PositionMapProps)
       }, []);
 
     return(
-        <LeafletMap center={position} zoom={zoom} style={{height: height, width: width, borderRadius: borderRadius}}>
+        <LeafletMap        
+        center={position} 
+        zoom={zoom}
+        scrollWheelZoom={false}
+        style={{
+            boxShadow: "0px 0px 9px 0px rgba(0,0,0,0.75)",
+            height: height, 
+            width: width, 
+            borderRadius: borderRadius
+            }}>
             <TileLayer maxZoom={22}
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
             url='https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=L7jWH8UlPu3enKseP3Nw'
