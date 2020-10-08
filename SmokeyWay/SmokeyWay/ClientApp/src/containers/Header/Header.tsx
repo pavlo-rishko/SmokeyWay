@@ -16,6 +16,9 @@ const StyledLink = styled("div")<{isScrolled: boolean}>`
   margin: 10px;
   display: inline-block;
   border-radius: 5px;
+  @media (max-width: 1000px) {
+    display: none;
+  }
   &:hover {
     box-shadow: 0px 0px 15px 2px  ${props => props.isScrolled ? "white" : "black"};
     color: black;
