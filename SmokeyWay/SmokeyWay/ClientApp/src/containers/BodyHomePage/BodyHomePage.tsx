@@ -30,7 +30,7 @@ const StyledFlexVideoContainer = styled("div")<{isScrolled: boolean}>`
     padding-top: ${props => props.isScrolled ? "8vh" : "initial"};
 `;
 
-const PositionMapWrapDiv = styled.div`
+const StyledPositionMapWrapDiv = styled.div`
     height: 100vh;
     display: flex;
     justify-content: flex-end;
@@ -40,6 +40,22 @@ const PositionMapWrapDiv = styled.div`
     @media (max-width: 800px) {
         justify-content: center;
         padding-right: 0;
+    }
+`;
+
+const StyledH1Logo = styled.h1`
+    font-family: PermanentMarker-Regular;
+    font-size: 12vw;
+    mix-blend-mode: overlay;
+    color: #fff;
+    @media (max-width: 800px) {
+        line-height: 200px;
+        font-size: 20vw;
+        word-break: break-word;
+    }
+    @media (max-width: 650px) {
+        line-height: 25vw;
+        font-size: 25vw;
     }
 `;
 
@@ -54,18 +70,18 @@ function BodyHomePage()
             <StyledDiv style={{height: "120vh"}}>
                 <StyledVideo src={backgroundSmokeVideo} autoPlay muted loop />
                 <StyledFlexVideoContainer isScrolled={_isScrolled}>                    
-                    <h1 style={{fontFamily:"PermanentMarker-Regular", fontSize: "12vw", mixBlendMode: "overlay", color: "#fff"}}>
+                    <StyledH1Logo>
                         Smokey Way
-                    </h1>
+                    </StyledH1Logo>
                 </StyledFlexVideoContainer>
             </StyledDiv>
             <SectionWipes/>
             <StyledDiv style={{backgroundColor: "black"}}>
             </StyledDiv>
             <StyledDiv  style={{backgroundColor: "pink"}}>                
-                <PositionMapWrapDiv>
+                <StyledPositionMapWrapDiv>
                         <PositionMap zoom={18}/>
-                </PositionMapWrapDiv>
+                </StyledPositionMapWrapDiv>
             </StyledDiv>
         </div>
     )
