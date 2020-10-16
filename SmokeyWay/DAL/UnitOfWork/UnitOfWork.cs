@@ -1,9 +1,9 @@
-﻿using DAL.Entities;
-using DAL.Repository;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Entities;
+using DAL.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.UnitOfWork
 {

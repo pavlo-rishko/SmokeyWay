@@ -1,7 +1,7 @@
-﻿using DAL.Entities;
-using DAL.Repository;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using DAL.Entities;
+using DAL.Repository;
 
 namespace DAL.UnitOfWork
 {
