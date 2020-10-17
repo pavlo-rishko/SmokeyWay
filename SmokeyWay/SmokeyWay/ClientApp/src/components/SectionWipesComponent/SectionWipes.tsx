@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Controller, Scene } from 'react-scrollmagic';
 import { Tween, Timeline } from 'react-gsap';
+import CatImg from '../../public/hookahCat.png';
 
 const SectionWipesStyled = styled.div`
   overflow: hidden;
@@ -19,29 +20,19 @@ const SectionWipesStyled = styled.div`
     text-align: center;
   }
 
-  .panel span {
-    position: relative;
-    display: block;
-    top: 50%;
-    font-size: 80px;
+  .panel {
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
-  
-  .panel.blue {
-    background-color: #3883d8;
-  }
-  
-  .panel.turqoise {
-    background-color: #38ced7;
-  }
-  
-  .panel.green {
-    background-color: #22d659;
-  }
-  
-  .panel.bordeaux {
-    background-color: #953543;
+    
+  .panel.black {
+    background-color: black;
   }
 
+  .panel.white {
+    background-color: white;
+  }
 `;
 
 const SectionWipes = () => (
@@ -49,34 +40,26 @@ const SectionWipes = () => (
     <Controller>
       <Scene
         triggerHook="onLeave"
-        duration="300%"
+        duration="500%"
         pin
       >
         <Timeline wrapper={<div id="pinContainer" />}>
-          <section className="panel blue">
-              <span>
-                  LOL1
-              </span>
+          <section className="panel black">
+                  <img src={CatImg}/>
           </section>
-          <Tween from={{ x: '-100%' }} to={{ x: '0%' }}>
-            <section className="panel turqoise">
-                <span>
+          <Tween from={{ x: '-400%' }} to={{ x: '0%' }}>
+            <section className="panel white">
                     LOL2
-                </span>
             </section>
           </Tween>
-          <Tween from={{ x: '100%' }} to={{ x: '0%' }}>
-            <section className="panel green">
-                <span>
+          <Tween from={{ x: '150%' }} to={{ x: '0%' }}>
+            <section className="panel black">
                     LOL3
-                </span>
             </section>
           </Tween>
-          <Tween from={{ y: '-100%' }} to={{ y: '0%' }}>
-            <section className="panel bordeaux">
-                <span>
+          <Tween from={{ y: '-150%' }} to={{ y: '0%' }}>
+            <section className="panel white">
                     LOL4
-                </span>
             </section>
           </Tween>
         </Timeline>

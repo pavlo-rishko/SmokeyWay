@@ -36,8 +36,8 @@ function PositionMap(props: PositionMapProps)
 {
     const {position = [49.84454, 24.026750] as unknown as L.LatLngLiteral,
         popUpText = "",
-        height = "35vh",
-        width = "30vw",
+        height = "45vh",
+        width = "35vw",
         zoom = 10,
         borderRadius = "30px"
     } = props;

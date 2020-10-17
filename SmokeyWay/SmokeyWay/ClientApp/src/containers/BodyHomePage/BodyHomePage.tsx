@@ -35,11 +35,12 @@ const StyledPositionMapWrapDiv = styled.div`
     display: flex;
     justify-content: flex-end;
     padding-right: 6vw;
-    padding-bottom: 4vh;
+    padding-bottom: 3vh;
     align-items: center;
     @media (max-width: 800px) {
         justify-content: center;
         padding-right: 0;
+        padding-left: 1vw;
     }
 `;
 
@@ -56,6 +57,24 @@ const StyledH1Logo = styled.h1`
     @media (max-width: 650px) {
         line-height: 25vw;
         font-size: 25vw;
+    }
+`;
+
+const StyledH2MapText = styled.h2`
+    font-family: cursive;
+    margin-bottom: 28vh;
+    margin-top: 0;
+    font-size: 10vw; 
+    color: white;
+    right: 15%;
+    position: relative;
+    display: initial;
+    @media (max-width: 800px) {
+        position: absolute;
+        margin-bottom: 0vh;
+        margin-top: 70vh;
+        right: 0;
+        left: 0;
     }
 `;
 
@@ -78,8 +97,11 @@ function BodyHomePage()
             <SectionWipes/>
             <StyledDiv style={{backgroundColor: "black"}}>
             </StyledDiv>
-            <StyledDiv  style={{backgroundColor: "pink"}}>                
+            <StyledDiv  style={{backgroundColor: "black"}}>                
                 <StyledPositionMapWrapDiv>
+                        <StyledH2MapText>
+                            Де ми?
+                        </StyledH2MapText>             
                         <PositionMap zoom={18}/>
                 </StyledPositionMapWrapDiv>
             </StyledDiv>
