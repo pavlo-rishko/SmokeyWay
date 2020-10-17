@@ -3,6 +3,7 @@ using DAL.Repository;
 using DAL.UnitOfWork;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +20,17 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator<OfflineTableReservation> _validator;
 
-        public OfflineTableReservationController(IUnitOfWork unitOfWork, IValidator<OfflineTableReservation> validator)
+        private readonly ILogger _logger;
+
+        public OfflineTableReservationController(
+            IUnitOfWork unitOfWork, 
+            IValidator<OfflineTableReservation> validator,
+            ILogger<OfflineTableReservationController> logger)
         {
             _unitOfWork = unitOfWork;
             _offlineTableReservationRepository = unitOfWork.GetRepository<OfflineTableReservation>();
             _validator = validator;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,7 +44,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can't be 0");
+                var ex = new ArgumentException($"{nameof(id)} can't be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -48,7 +57,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -57,12 +67,16 @@ namespace SmokeyWay.Controllers
         {
             if (offlineTableReservation == null)
             {
-                throw new ArgumentException($"{nameof(offlineTableReservation)} can't be null");
+                var ex = new ArgumentException($"{nameof(offlineTableReservation)} can't be null");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(offlineTableReservation).IsValid)
             {
-                throw new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
+                var ex = new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -73,7 +87,9 @@ namespace SmokeyWay.Controllers
             }
             catch
             {
-                throw new Exception($"Error while adding offline table reservation nameof{nameof(offlineTableReservation)}");
+                var ex = new Exception($"Error while adding offline table reservation nameof{nameof(offlineTableReservation)}");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -82,12 +98,16 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                var ex = new ArgumentException($"{nameof(id)} cannot be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(offlineTableReservation).IsValid)
             {
-                throw new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
+                var ex = new ArgumentException($"{nameof(offlineTableReservation)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -96,7 +116,9 @@ namespace SmokeyWay.Controllers
 
                 if (currentOfflineTableReservation == null)
                 {
-                    throw new NullReferenceException($"Error while updating offline table rReservation. Offline table reservation with {nameof(id)}={id} not found");
+                    var ex = new NullReferenceException($"Error while updating offline table rReservation. Offline table reservation with {nameof(id)}={id} not found");
+                    _logger.LogError(ex.ToString());
+                    throw ex;
                 }
 
                 currentOfflineTableReservation.TableId = offlineTableReservation.TableId;
@@ -112,7 +134,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -121,7 +144,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                var ex = new ArgumentException($"{nameof(id)} cannot be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -133,7 +158,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             return Ok();

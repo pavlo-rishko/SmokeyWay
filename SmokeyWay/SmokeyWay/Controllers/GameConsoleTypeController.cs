@@ -1,11 +1,12 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentValidation;
 
 namespace SmokeyWay.Controllers
 {
@@ -19,11 +20,14 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator<GameConsoleType> _validator;
 
-        public GameConsoleTypeController(IUnitOfWork unitOfWork, IValidator<GameConsoleType> validator)
+        private readonly ILogger _logger;
+
+        public GameConsoleTypeController(IUnitOfWork unitOfWork, IValidator<GameConsoleType> validator, ILogger<GameConsoleTypeController> logger)
         {
             _unitOfWork = unitOfWork;
             _gameConsoleTypeRepository = unitOfWork.GetRepository<GameConsoleType>();
             _validator = validator;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,7 +41,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can't be 0");
+                var ex = new ArgumentException($"{nameof(id)} can't be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -48,7 +54,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -57,12 +64,16 @@ namespace SmokeyWay.Controllers
         {
             if (gameConsoleType == null)
             {
-                throw new ArgumentException($"{nameof(gameConsoleType)} can't be null");
+                var ex = new ArgumentException($"{nameof(gameConsoleType)} can't be null");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(gameConsoleType).IsValid)
             {
-                throw new ArgumentException($"{nameof(gameConsoleType)} is not valid");
+                var ex = new ArgumentException($"{nameof(gameConsoleType)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -73,7 +84,9 @@ namespace SmokeyWay.Controllers
             }
             catch
             {
-                throw new Exception($"Error while adding game console type nameof{nameof(gameConsoleType)}");
+                var ex = new Exception($"Error while adding game console type nameof{nameof(gameConsoleType)}");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -82,12 +95,16 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                var ex = new ArgumentException($"{nameof(id)} cannot be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(gameConsoleType).IsValid)
             {
-                throw new ArgumentException($"{nameof(gameConsoleType)} is not valid");
+                var ex = new ArgumentException($"{nameof(gameConsoleType)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -96,7 +113,9 @@ namespace SmokeyWay.Controllers
 
                 if (currentGameConsoleType == null)
                 {
-                    throw new NullReferenceException($"Error while updating game console type. Game console type with {nameof(id)}={id} not found");
+                    var ex = new NullReferenceException($"Error while updating game console type. Game console type with {nameof(id)}={id} not found");
+                    _logger.LogError(ex.ToString());
+                    throw ex;
                 }
 
                 currentGameConsoleType.Name = gameConsoleType.Name;
@@ -109,7 +128,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -118,7 +138,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                var ex = new ArgumentException($"{nameof(id)} cannot be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -130,7 +152,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             return Ok();

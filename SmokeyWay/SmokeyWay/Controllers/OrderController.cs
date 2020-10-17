@@ -1,11 +1,12 @@
 ﻿using DAL.Entities;
 using DAL.Repository;
 using DAL.UnitOfWork;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentValidation;
 
 namespace SmokeyWay.Controllers
 {
@@ -19,11 +20,14 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator<Order> _validator;
 
-        public OrderController(IUnitOfWork unitOfWork, IValidator<Order> validator)
+        private readonly ILogger _logger;
+
+        public OrderController(IUnitOfWork unitOfWork, IValidator<Order> validator, ILogger<OrderController> logger)
         {
             _unitOfWork = unitOfWork;
             _orderRepository = unitOfWork.GetRepository<Order>();
             _validator = validator;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,7 +41,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can't be 0");
+                var ex = new ArgumentException($"{nameof(id)} can't be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -48,7 +54,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -57,12 +64,16 @@ namespace SmokeyWay.Controllers
         {
             if (order == null)
             {
-                throw new ArgumentException($"{nameof(order)} can't be null");
+                var ex = new ArgumentException($"{nameof(order)} can't be null");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(order).IsValid)
             {
-                throw new ArgumentException($"{nameof(order)} is not valid");
+                var ex = new ArgumentException($"{nameof(order)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -73,7 +84,9 @@ namespace SmokeyWay.Controllers
             }
             catch
             {
-                throw new Exception($"Error while adding order nameof{nameof(order)}");
+                var ex = new Exception($"Error while adding order nameof{nameof(order)}");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -82,12 +95,16 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                var ex = new ArgumentException($"{nameof(id)} cannot be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(order).IsValid)
             {
-                throw new ArgumentException($"{nameof(order)} is not valid");
+                var ex = new ArgumentException($"{nameof(order)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -96,7 +113,9 @@ namespace SmokeyWay.Controllers
 
                 if (currentOrder == null)
                 {
-                    throw new NullReferenceException($"Error while updating order. Order with {nameof(id)}={id} not found");
+                    var ex = new NullReferenceException($"Error while updating order. Order with {nameof(id)}={id} not found");
+                    _logger.LogError(ex.ToString());
+                    throw ex;
                 }
 
                 currentOrder.TableId = order.TableId;
@@ -110,7 +129,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -119,7 +139,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} cannot be 0");
+                var ex = new ArgumentException($"{nameof(id)} cannot be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -131,7 +153,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             return Ok();

@@ -3,6 +3,7 @@ using DAL.Repository;
 using DAL.UnitOfWork;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,11 +20,14 @@ namespace SmokeyWay.Controllers
 
         private readonly IValidator<DishType> _validator;
 
-        public DishTypeController(IUnitOfWork unitOfWork, IValidator<DishType> validator)
+        private readonly ILogger _logger;
+
+        public DishTypeController(IUnitOfWork unitOfWork, IValidator<DishType> validator, ILogger<DishTypeController> logger)
         {
             _unitOfWork = unitOfWork;
             _dishTypeRepository = unitOfWork.GetRepository<DishType>();
             _validator = validator;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,7 +41,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can`t be 0");
+                var ex = new ArgumentException($"{nameof(id)} can`t be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -48,7 +54,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }           
         }
 
@@ -57,12 +64,16 @@ namespace SmokeyWay.Controllers
         {
             if (dish.Name == null)
             {
-                throw new ArgumentException($"{nameof(dish)} can`t be null");
+                var ex = new ArgumentException($"{nameof(dish)} can`t be null");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(dish).IsValid)
             {
-                throw new ArgumentException($"{nameof(dish)} is not valid");
+                var ex = new ArgumentException($"{nameof(dish)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -74,7 +85,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["dish"] = dish;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }          
         }
 
@@ -83,12 +95,16 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can`t be 0");
+                var ex = new ArgumentException($"{nameof(id)} can`t be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             if (!_validator.Validate(dishType).IsValid)
             {
-                throw new ArgumentException($"{nameof(dishType)} is not valid");
+                var ex = new ArgumentException($"{nameof(dishType)} is not valid");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -97,7 +113,9 @@ namespace SmokeyWay.Controllers
 
                 if (currentDishType == null)
                 {
-                    throw new NullReferenceException($"Error while updating dishtype. DishType with {nameof(id)}={id} not found");
+                    var ex = new NullReferenceException($"Error while updating dishtype. DishType with {nameof(id)}={id} not found");
+                    _logger.LogError(ex.ToString());
+                    throw ex;
                 }
 
                 currentDishType.Name = dishType.Name;
@@ -108,7 +126,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["dishType"] = dishType;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
 
@@ -117,7 +136,9 @@ namespace SmokeyWay.Controllers
         {
             if (id == default)
             {
-                throw new ArgumentException($"{nameof(id)} can`t be 0");
+                var ex = new ArgumentException($"{nameof(id)} can`t be 0");
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
 
             try
@@ -130,7 +151,8 @@ namespace SmokeyWay.Controllers
             catch (Exception ex)
             {
                 ex.Data["id"] = id;
-                throw;
+                _logger.LogError(ex.ToString());
+                throw ex;
             }
         }
     }
