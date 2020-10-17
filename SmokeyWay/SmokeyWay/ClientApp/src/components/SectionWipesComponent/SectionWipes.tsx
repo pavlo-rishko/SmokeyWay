@@ -45,7 +45,7 @@ const SectionWipes = () => (
       >
         <Timeline wrapper={<div id="pinContainer" />}>
           <section className="panel black">
-                  <img src={CatImg}/>
+                  <img alt="Fumari tobacco" src={CatImg}/>
           </section>
           <Tween from={{ x: '-400%' }} to={{ x: '0%' }}>
             <section className="panel white">
